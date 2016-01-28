@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.h5blog.dao.PageComDao" >
+  <resultMap id="BaseResultMap" type="com.victor.h5blog.entity.PageCom" >
+    <id column="PG_COM_ID" property="id" jdbcType="BIGINT" />
+    <result column="PG_COM_NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PG_COM_DESC" property="desc" jdbcType="VARCHAR" />
+    <result column="PG_COM_KEY" property="key" jdbcType="VARCHAR" />
+    <result column="PG_COM_TYPE" property="type" jdbcType="INTEGER" />
+    <result column="PG_COM_FTL_PATH" property="ftlPath" jdbcType="VARCHAR" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CHANGE_USER" property="changeUser" jdbcType="VARCHAR" />
+    <result column="CHANGE_DATE" property="changeDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.victor.h5blog.entity.PageCom" extends="BaseResultMap" >
+    <result column="PG_COM_CONTEXT" property="context" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PG_COM_ID, PG_COM_NAME, PG_COM_DESC, PG_COM_KEY, PG_COM_TYPE, PG_COM_FTL_PATH, CREATE_USER, 
+    CREATE_DATE, CHANGE_USER, CHANGE_DATE
+  </sql>
+  <sql id="Blob_Column_List" >
+    PG_COM_CONTEXT
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.victor.h5blog.entity.PageComExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from LEGOO_PG_COM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.victor.h5blog.entity.PageComExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from LEGOO_PG_COM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from LEGOO_PG_COM
+    where PG_COM_ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from LEGOO_PG_COM
+    where PG_COM_ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.victor.h5blog.entity.PageComExample" >
+    delete from LEGOO_PG_COM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.victor.h5blog.entity.PageCom"  useGeneratedKeys="true" keyProperty="id">
+    insert into LEGOO_PG_COM (PG_COM_ID, PG_COM_NAME, PG_COM_DESC, 
+      PG_COM_KEY, PG_COM_TYPE, PG_COM_FTL_PATH, 
+      CREATE_USER, CREATE_DATE, CHANGE_USER, 
+      CHANGE_DATE, PG_COM_CONTEXT)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{key,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{ftlPath,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{changeUser,jdbcType=VARCHAR}, 
+      #{changeDate,jdbcType=TIMESTAMP}, #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.h5blog.entity.PageCom" >
+    insert into LEGOO_PG_COM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        PG_COM_ID,
+      </if>
+      <if test="name != null" >
+        PG_COM_NAME,
+      </if>
+      <if test="desc != null" >
+        PG_COM_DESC,
+      </if>
+      <if test="key != null" >
+        PG_COM_KEY,
+      </if>
+      <if test="type != null" >
+        PG_COM_TYPE,
+      </if>
+      <if test="ftlPath != null" >
+        PG_COM_FTL_PATH,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="changeUser != null" >
+        CHANGE_USER,
+      </if>
+      <if test="changeDate != null" >
+        CHANGE_DATE,
+      </if>
+      <if test="context != null" >
+        PG_COM_CONTEXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ftlPath != null" >
+        #{ftlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null" >
+        #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null" >
+        #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.victor.h5blog.entity.PageComExample" resultType="java.lang.Integer" >
+    select count(*) from LEGOO_PG_COM
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update LEGOO_PG_COM
+    <set >
+      <if test="record.id != null" >
+        PG_COM_ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        PG_COM_NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        PG_COM_DESC = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.key != null" >
+        PG_COM_KEY = #{record.key,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        PG_COM_TYPE = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.ftlPath != null" >
+        PG_COM_FTL_PATH = #{record.ftlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.changeUser != null" >
+        CHANGE_USER = #{record.changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeDate != null" >
+        CHANGE_DATE = #{record.changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.context != null" >
+        PG_COM_CONTEXT = #{record.context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update LEGOO_PG_COM
+    set PG_COM_ID = #{record.id,jdbcType=BIGINT},
+      PG_COM_NAME = #{record.name,jdbcType=VARCHAR},
+      PG_COM_DESC = #{record.desc,jdbcType=VARCHAR},
+      PG_COM_KEY = #{record.key,jdbcType=VARCHAR},
+      PG_COM_TYPE = #{record.type,jdbcType=INTEGER},
+      PG_COM_FTL_PATH = #{record.ftlPath,jdbcType=VARCHAR},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      CHANGE_USER = #{record.changeUser,jdbcType=VARCHAR},
+      CHANGE_DATE = #{record.changeDate,jdbcType=TIMESTAMP},
+      PG_COM_CONTEXT = #{record.context,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update LEGOO_PG_COM
+    set PG_COM_ID = #{record.id,jdbcType=BIGINT},
+      PG_COM_NAME = #{record.name,jdbcType=VARCHAR},
+      PG_COM_DESC = #{record.desc,jdbcType=VARCHAR},
+      PG_COM_KEY = #{record.key,jdbcType=VARCHAR},
+      PG_COM_TYPE = #{record.type,jdbcType=INTEGER},
+      PG_COM_FTL_PATH = #{record.ftlPath,jdbcType=VARCHAR},
+      CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      CHANGE_USER = #{record.changeUser,jdbcType=VARCHAR},
+      CHANGE_DATE = #{record.changeDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.h5blog.entity.PageCom" >
+    update LEGOO_PG_COM
+    <set >
+      <if test="name != null" >
+        PG_COM_NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        PG_COM_DESC = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="key != null" >
+        PG_COM_KEY = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        PG_COM_TYPE = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ftlPath != null" >
+        PG_COM_FTL_PATH = #{ftlPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null" >
+        CHANGE_USER = #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null" >
+        CHANGE_DATE = #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="context != null" >
+        PG_COM_CONTEXT = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where PG_COM_ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.victor.h5blog.entity.PageCom" >
+    update LEGOO_PG_COM
+    set PG_COM_NAME = #{name,jdbcType=VARCHAR},
+      PG_COM_DESC = #{desc,jdbcType=VARCHAR},
+      PG_COM_KEY = #{key,jdbcType=VARCHAR},
+      PG_COM_TYPE = #{type,jdbcType=INTEGER},
+      PG_COM_FTL_PATH = #{ftlPath,jdbcType=VARCHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CHANGE_USER = #{changeUser,jdbcType=VARCHAR},
+      CHANGE_DATE = #{changeDate,jdbcType=TIMESTAMP},
+      PG_COM_CONTEXT = #{context,jdbcType=LONGVARCHAR}
+    where PG_COM_ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.h5blog.entity.PageCom">
+    update LEGOO_PG_COM
+    set PG_COM_NAME = #{name,jdbcType=VARCHAR},
+      PG_COM_DESC = #{desc,jdbcType=VARCHAR},
+      PG_COM_KEY = #{key,jdbcType=VARCHAR},
+      PG_COM_TYPE = #{type,jdbcType=INTEGER},
+      PG_COM_CONTEXT = #{context,jdbcType=VARCHAR},
+      PG_COM_FTL_PATH = #{ftlPath,jdbcType=VARCHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CHANGE_USER = #{changeUser,jdbcType=VARCHAR},
+      CHANGE_DATE = #{changeDate,jdbcType=TIMESTAMP}
+    where PG_COM_ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

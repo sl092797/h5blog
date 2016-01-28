@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.h5blog.dao.PageTemplateAreaDao">
+	<resultMap id="BaseResultMap"
+		type="com.victor.h5blog.entity.PageTemplateArea">
+		<id column="PG_TPL_AREA" property="pgTplArea" jdbcType="BIGINT" />
+		<result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+		<result column="PG_TPL_ID" property="pgTplId" jdbcType="BIGINT" />
+		<result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="CHANGE_USER" property="changeUser" jdbcType="VARCHAR" />
+		<result column="CHANGE_DATE" property="changeDate" jdbcType="TIMESTAMP" />
+		<result column="PG_COM_DEF_ID" property="comDefId" jdbcType="BIGINT" />
+		<result column="PG_COM_NAME" property="comName" jdbcType="VARCHAR" />
+		<result column="PG_COM_DESC" property="comDesc" jdbcType="VARCHAR" />
+		<result column="PG_COM_FTL_PATH" property="ftlPath" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		PG_TPL_AREA, AREA_NAME, PG_TPL_ID, CREATE_USER,
+		CREATE_DATE, CHANGE_USER,
+		CHANGE_DATE
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.victor.h5blog.entity.PageTemplateAreaExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		'true' as QUERYID,
+		<include refid="Base_Column_List" />
+		from LEGOO_PG_TPL_AREA
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="selectAreaNameByExample" resultType="String"
+		parameterType="com.victor.h5blog.entity.PageTemplateAreaExample">
+		select
+		 	AREA_NAME
+		from LEGOO_PG_TPL_AREA
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="selectByPageDefKey" resultMap="BaseResultMap"
+		parameterType="map">
+		select
+		*
+		from LEGOO_PG_TPL_AREA a left
+		outer join LEGOO_PG_DEF_AREA_COM b on
+		a.PG_TPL_AREA=b.PG_TPL_AREA_ID and
+		b.PG_DEF_ID=#{pageDefId} left outer join LEGOO_PG_COM_DEF d on
+		b.PG_COM_DEF_ID=d.PG_COM_DEF_ID left outer join LEGOO_PG_COM c on
+		c.PG_COM_ID=d.PG_COM_ID where a.PG_TPL_ID=#{tplId}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from LEGOO_PG_TPL_AREA
+		where PG_TPL_AREA = #{pgTplArea,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		LEGOO_PG_TPL_AREA
+		where PG_TPL_AREA = #{pgTplArea,jdbcType=BIGINT}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.victor.h5blog.entity.PageTemplateAreaExample">
+		delete from LEGOO_PG_TPL_AREA
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.victor.h5blog.entity.PageTemplateArea">
+		insert into LEGOO_PG_TPL_AREA
+		(PG_TPL_AREA, AREA_NAME, PG_TPL_ID,
+		CREATE_USER, CREATE_DATE,
+		CHANGE_USER,
+		CHANGE_DATE)
+		values (#{pgTplArea,jdbcType=BIGINT},
+		#{areaName,jdbcType=VARCHAR},
+		#{pgTplId,jdbcType=BIGINT},
+		#{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+		#{changeUser,jdbcType=VARCHAR},
+		#{changeDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.victor.h5blog.entity.PageTemplateArea">
+		insert into LEGOO_PG_TPL_AREA
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pgTplArea != null">
+				PG_TPL_AREA,
+			</if>
+			<if test="areaName != null">
+				AREA_NAME,
+			</if>
+			<if test="pgTplId != null">
+				PG_TPL_ID,
+			</if>
+			<if test="createUser != null">
+				CREATE_USER,
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE,
+			</if>
+			<if test="changeUser != null">
+				CHANGE_USER,
+			</if>
+			<if test="changeDate != null">
+				CHANGE_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pgTplArea != null">
+				#{pgTplArea,jdbcType=BIGINT},
+			</if>
+			<if test="areaName != null">
+				#{areaName,jdbcType=VARCHAR},
+			</if>
+			<if test="pgTplId != null">
+				#{pgTplId,jdbcType=BIGINT},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changeUser != null">
+				#{changeUser,jdbcType=VARCHAR},
+			</if>
+			<if test="changeDate != null">
+				#{changeDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.victor.h5blog.entity.PageTemplateAreaExample"
+		resultType="java.lang.Integer">
+		select count(*) from LEGOO_PG_TPL_AREA
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update LEGOO_PG_TPL_AREA
+		<set>
+			<if test="record.pgTplArea != null">
+				PG_TPL_AREA = #{record.pgTplArea,jdbcType=BIGINT},
+			</if>
+			<if test="record.areaName != null">
+				AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pgTplId != null">
+				PG_TPL_ID = #{record.pgTplId,jdbcType=BIGINT},
+			</if>
+			<if test="record.createUser != null">
+				CREATE_USER = #{record.createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createDate != null">
+				CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.changeUser != null">
+				CHANGE_USER = #{record.changeUser,jdbcType=VARCHAR},
+			</if>
+			<if test="record.changeDate != null">
+				CHANGE_DATE = #{record.changeDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update LEGOO_PG_TPL_AREA
+		set PG_TPL_AREA =
+		#{record.pgTplArea,jdbcType=BIGINT},
+		AREA_NAME =
+		#{record.areaName,jdbcType=VARCHAR},
+		PG_TPL_ID =
+		#{record.pgTplId,jdbcType=BIGINT},
+		CREATE_USER =
+		#{record.createUser,jdbcType=VARCHAR},
+		CREATE_DATE =
+		#{record.createDate,jdbcType=TIMESTAMP},
+		CHANGE_USER =
+		#{record.changeUser,jdbcType=VARCHAR},
+		CHANGE_DATE =
+		#{record.changeDate,jdbcType=TIMESTAMP}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.victor.h5blog.entity.PageTemplateArea">
+		update LEGOO_PG_TPL_AREA
+		<set>
+			<if test="areaName != null">
+				AREA_NAME = #{areaName,jdbcType=VARCHAR},
+			</if>
+			<if test="pgTplId != null">
+				PG_TPL_ID = #{pgTplId,jdbcType=BIGINT},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changeUser != null">
+				CHANGE_USER = #{changeUser,jdbcType=VARCHAR},
+			</if>
+			<if test="changeDate != null">
+				CHANGE_DATE = #{changeDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where PG_TPL_AREA = #{pgTplArea,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.victor.h5blog.entity.PageTemplateArea">
+		update
+		LEGOO_PG_TPL_AREA
+		set AREA_NAME = #{areaName,jdbcType=VARCHAR},
+		PG_TPL_ID = #{pgTplId,jdbcType=BIGINT},
+		CREATE_USER =
+		#{createUser,jdbcType=VARCHAR},
+		CREATE_DATE =
+		#{createDate,jdbcType=TIMESTAMP},
+		CHANGE_USER =
+		#{changeUser,jdbcType=VARCHAR},
+		CHANGE_DATE =
+		#{changeDate,jdbcType=TIMESTAMP}
+		where PG_TPL_AREA =
+		#{pgTplArea,jdbcType=BIGINT}
+	</update>
+</mapper>

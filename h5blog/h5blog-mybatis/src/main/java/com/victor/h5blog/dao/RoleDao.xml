@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.victor.h5blog.dao.RoleDao">
+	<resultMap id="resultRoleList" type="Role">
+		<id column="ROLE_ID" property="roleId" />
+		<result column="ROLE_NAME" property="roleName" />
+		<result column="ROLE_NO" property="roleNo" />
+		<result column="ROLE_DESC" property="roleDesc" />
+		<result column="ROLE_TYPE" property="roleType" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="LAST_MODIFY_TIME" property="lastModifyTime" />
+		<result column="DELETE_FLAG" property="deleteFlag" />
+		<result column="MEMO" property="memo" />
+	</resultMap>
+	<sql id="Role_Column_List">
+		ROLE_ID,
+		ROLE_NAME,ROLE_NO,ROLE_DESC,ROLE_TYPE,CREATE_TIME,LAST_MODIFY_TIME,DELETE_FLAG,MEMO
+	</sql>
+	<select id="findAllRoles" resultType="Role" resultMap="resultRoleList">
+		SELECT *
+		FROM LEGOO_ROLE;
+	</select>
+	<select id="finRoleById" resultType="Role" resultMap="resultRoleList">
+		SELECT *
+		FROM LEGOO_ROLE WHERE ROLE_ID = #{roleId}
+	</select>
+	<!-- 获取所有角色列表 -->
+	<select id="findAllList" resultType="Role" resultMap="resultRoleList">
+		SELECT *
+		FROM LEGOO_ROLE WHERE DELETE_FLAG != "1"
+		LIMIT #{offset},#{rows}
+	</select>
+
+	<select id="count" parameterType="Role" resultType="int">
+		select count(1) from LEGOO_ROLE where 1=1
+		<if test="roleId != null">
+			AND ROLE_ID= #{roleId}
+		</if>
+		<if test="roleName != null">
+			AND ROLE_NAME= #{roleName}
+		</if>
+		<if test="roleNo != null">
+			AND ROLE_NO= #{roleNo}
+		</if>
+		<if test="roleType != null">
+			AND ROLE_TYPE= #{roleType}
+		</if>
+		<if test="createTime != null">
+			AND CREATE_TIME= #{createTime}
+		</if>
+		<if test="lastModifyTime != null">
+			AND LAST_MODIFY_TIME= #{lastModifyTime}
+		</if>
+		<if test="roleDesc != null">
+			AND ROLE_DESC= #{roleDesc}
+		</if>
+		<if test="deleteFlag != null">
+			AND DELETE_FLAG= #{deleteFlag}
+		</if>
+		<if test="memo != null">
+			AND MEMO= #{memo}
+		</if>
+	</select>
+	<insert id="insert" parameterType="Role">
+		insert into LEGOO_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ROLE_ID,
+			<if test="roleName != null">
+				ROLE_NAME,
+			</if>
+			<if test="roleNo != null">
+				ROLE_NO,
+			</if>
+			<if test="roleType != null">
+				ROLE_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="lastModifyTime != null">
+				LAST_MODIFY_TIME,
+			</if>
+			<if test="roleDesc != null">
+				ROLE_DESC,
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG,
+			</if>
+			<if test="memo != null">
+				MEMO,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			UUID_SHORT(),
+			<if test="roleName != null">
+				#{roleName},
+			</if>
+			<if test="roleNo != null">
+				#{roleNo},
+			</if>
+			<if test="roleType != null">
+				#{roleType},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="lastModifyTime != null">
+				#{lastModifyTime},
+			</if>
+			<if test="roleDesc != null">
+				#{roleDesc},
+			</if>
+			<if test="deleteFlag != null">
+				#{deleteFlag},
+			</if>
+			<if test="memo != null">
+				#{memo},
+			</if>
+		</trim>
+	</insert>
+	<update id="deleteById" parameterType="Role">
+		UPDATE LEGOO_ROLE SET
+		DELETE_FLAG = "1"
+		where ROLE_ID = #{roleId}
+	</update>
+	<delete id="deleteByMap" parameterType="Role">
+		delete from LEGOO_ROLE
+		<where>
+			<if test="roleId != null">
+				AND ROLE_ID= #{roleId}
+			</if>
+			<if test="roleName != null">
+				AND ROLE_NAME= #{roleName}
+			</if>
+			<if test="roleNo != null">
+				AND ROLE_NO= #{roleNo}
+			</if>
+			<if test="roleType != null">
+				AND ROLE_TYPE= #{roleType}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME= #{createTime}
+			</if>
+			<if test="lastModifyTime != null">
+				AND LAST_MODIFY_TIME= #{lastModifyTime}
+			</if>
+			<if test="roleDesc != null">
+				AND ROLE_DESC= #{roleDesc}
+			</if>
+			<if test="deleteFlag != null">
+				AND DELETE_FLAG= #{deleteFlag}
+			</if>
+			<if test="memo != null">
+				AND MEMO= #{memo}
+			</if>
+		</where>
+	</delete>
+	<update id="updateRoleById" parameterType="Role">
+		update LEGOO_ROLE
+		<set>
+			<if test="roleName != null">
+				ROLE_NAME = #{roleName},
+			</if>
+			<if test="roleNo != null">
+				ROLE_NO = #{roleNo},
+			</if>
+			<if test="roleType != null">
+				ROLE_TYPE = #{roleType},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime},
+			</if>
+			<if test="lastModifyTime != null">
+				LAST_MODIFY_TIME = #{lastModifyTime},
+			</if>
+			<if test="roleDesc != null">
+				ROLE_DESC = #{roleDesc},
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG = #{deleteFlag},
+			</if>
+			<if test="memo != null">
+				MEMO = #{memo},
+			</if>
+		</set>
+		where ROLE_ID = #{roleId}
+	</update>
+
+	<select id="getRoleById" resultType="Role" resultMap="resultRoleList">
+		select
+		<include refid="Role_Column_List" />
+		from LEGOO_ROLE where ROLE_ID = #{roleId}
+	</select>
+	<select id="selectByProperties" parameterType="Role" resultMap="resultRoleList">
+		select
+		<include refid="Role_Column_List" />
+		from LEGOO_ROLE where 1=1
+		<if test="roleId != null">
+			AND ROLE_ID= #{roleId}
+		</if>
+		<if test="roleName != null">
+			AND ROLE_NAME= #{roleName}
+		</if>
+		<if test="roleNo != null">
+			AND ROLE_NO= #{roleNo}
+		</if>
+		<if test="roleType != null">
+			AND ROLE_TYPE= #{roleType}
+		</if>
+		<if test="createTime != null">
+			AND CREATE_TIME= #{createTime}
+		</if>
+		<if test="lastModifyTime != null">
+			AND LAST_MODIFY_TIME= #{lastModifyTime}
+		</if>
+		<if test="roleDesc != null">
+			AND ROLE_DESC= #{roleDesc}
+		</if>
+		<if test="deleteFlag != null">
+			AND DELETE_FLAG= #{deleteFlag}
+		</if>
+		<if test="memo != null">
+			AND MEMO= #{memo}
+		</if>
+	</select>
+
+	<!-- 新增角色 -->
+	<insert id="addRole" parameterType="Role" useGeneratedKeys="true"
+		keyProperty="roleId">
+		insert into LEGOO_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">
+				ROLE_NAME,
+			</if>
+			<if test="roleNo != null">
+				ROLE_NO,
+			</if>
+			<if test="roleDesc != null">
+				ROLE_DESC,
+			</if>
+			<if test="roleType != null">
+				ROLE_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="lastModifyTime != null">
+				LAST_MODIFY_TIME,
+			</if>
+			<if test="deleteFlag != null">
+				DELETE_FLAG,
+			</if>
+			<if test="memo != null">
+				MEMO,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">
+				#{roleName},
+			</if>
+			<if test="roleNo != null">
+				#{roleNo},
+			</if>
+			<if test="roleDesc != null">
+				#{roleDesc},
+			</if>
+			<if test="roleType != null">
+				#{roleType},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+			<if test="lastModifyTime != null">
+				#{lastModifyTime},
+			</if>
+			<if test="deleteFlag != null">
+				#{deleteFlag},
+			</if>
+			<if test="memo != null">
+				#{memo},
+			</if>
+		</trim>
+		<selectKey resultType="java.lang.Long" order="AFTER"
+			keyProperty="roleId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<select id="findRoleByNo" resultType="Role" resultMap="resultRoleList">
+		SELECT *
+		FROM LEGOO_ROLE WHERE ROLE_NO = #{roleNo}
+	</select>
+</mapper>

@@ -1,0 +1,356 @@
+@charset "utf-8";
+/* CSS Document */
+/* ######### CSS  ######### */
+body{
+	margin:0;
+	padding:0;
+	background:white;
+	text-align:center;
+	width:100%;
+	height:100%;
+}
+
+div.master{
+	margin:0 auto;
+	width:960px;
+	position:relative;
+	z-index:0;
+	text-align:left;
+	z-index:100;
+}
+
+p{line-height:1.5em;}
+.borderGray{border:1px solid #ccc;}
+
+.bgPlainBlue{background-color:#DDEDFC;}
+
+
+.btnAll{display:inline-block; padding:1px 16px 1px 4px; background:url(/zh_cn/images/btn_arrow.gif) no-repeat 90% center; border:1px solid #c7deee;}
+
+.ccbTableStyele01 .title td{color:#003576; font-size:13px; border-bottom:1px solid #c6d6ec;}
+.ccbTableStyele01 .title td{padding-bottom:4px;}
+
+#ccb_news_list{color:#006bb6; font-size:11px;}
+#ccb_news_list li{padding-left:12px; background:url(/zh_cn/images/btn_dot_blue.gif) no-repeat 0 4px; margin-top:8px; position:relative;}
+
+.cancelBg{background-image:none;}
+
+.normalTable{margin-top:10px; border:1px solid #ececed;}
+.normalTable thead{background-color:#2C6AB7; font-weight:bold;}
+.normalTable thead td{vertical-align:top; border-color:white; color:white;}
+.normalTable td{padding:3px; border-right:1px solid #ececed; border-right-style:inset;}
+.normalTable tbody td{border-top:1px solid #ececed; }
+
+.list{margin-top:10px;}
+.list td{padding:2px 0;}
+
+.bulletPt li{list-style:disc; margin-left:15px; margin-top:2px;}
+/**
+ * ========================================
+ *
+ * 
+/* header
+ * ----------------------------------------
+ *
+ *
+ *
+ *
+ */
+ 
+div.header{
+	width:width:100%;
+	height:100px;
+	position:relative; 
+	z-index:100;
+}
+
+div.header .logo{position:absolute; left:1px; top:10px;}
+div.header .functionsBar{position:absolute; right:0; top:8px; z-index:500;}
+.pulldownCountry{width:115px; height:15px; background:url(/zh_cn/images/pulldown_country.jpg) no-repeat 0 0; vertical-align:top; position:relative; z-index:500;}
+.pulldownCountry span{width:88px; height:14px; border:0; margin-left:5px; background:transparent; display:inline-block;}
+.pulldownCountry .submitBtn{width:8px; height:8px; margin-left:7px;}
+.countryList{position:absolute; top:17px; left:2px; width:112px; background-color:white;border:1px solid #fafafa; border-top:0; margin:-1px; display:none;}
+.countryList a{display:inline-block; width:102px; padding:2px 5px;}
+
+.topMenu ul, .subMenuBox .rollover{position:relative; z-index:100;}
+.topMenu{width:959px; height:33px; position:absolute; left:0; top:57px; background:url(../images/nav_bar.jpg) no-repeat 0 0;}
+/*.topMenu ul{width:100%;}*/
+.menuList a{display:inline-block; padding:9px 20px;}
+.subMenuBox{width:720px; height:180px; position:absolute; left:0; top:90px; padding-left:32px; display:none; background:url(/zh_cn/images/rollover_menu_deposit.png) no-repeat 0 0;}
+.subMenuBox ul{width:170px; float:left; margin-top:15px; position:relative; z-index:500;}
+.subMenuBox ul li{padding:3px 0; width:100%; background-image:none;}
+.subMenuBox .rollover{position:absolute; right:65px; padding-top:18px; width:340px; height:112px; overflow:hidden; z-index:0;}
+.subMenuBox .rollover p{width:175px; padding-left:155px; position:relative; z-index:100;}
+/* .subMenuBox .bg{width:731px; height:125px; position:absolute; left:0; top:0; display:block; background:url(/zh_cn/images/rollover_menu_deposit.png) no-repeat 0 0; z-index:-1;} */
+.subMenuBox .rollover_image{position:absolute; left:0; top:0; z-index:0;}
+.subMenuBox ul li a{background:url(/zh_cn/images/arrow_gray.jpg) no-repeat 0 4px; padding-left:9px; display:inline-block; color:#525659;}
+.subMenuBox ul li a:hover{color:#006bbb; /*background-image:url(/zh_cn/images/arrow_blue.jpg);*/}
+.subMenuBox .rollover .title{color:#192c67; font-size:13px; font-weight:bold;}
+
+.subMenuBox a{background:url(/zh_cn/images/arrow_submenu.gif) no-repeat 0 6px; padding-left:7px;}
+
+#topMenuTabs{position:absolute; right:0; top:-26px; text-align: right;}
+#topMenuTabs ul{padding-right:5px;}
+#topMenuTabs li {display: inline;}
+/*#topMenuTabs ul, #topMenuTabs li{float:right; padding-left:2px;}*/
+#topMenuTabs a{display:inline-block; height:28px; background:no-repeat 0 -28px;}
+#topMenuTabs .current{background-position:0 0;}
+ 
+#topMenuTabs {float:right; padding-left:2px; padding-right:10px;}
+#topMenuTabs li{margin-left:1px;}
+#topMenuTabs .inactive { background-position: 0 -28px}
+#topMenuTabs .active, #topMenuTabs .highlight { background-position: 0 0px !important }
+.tab-menu-item {display:inline-block; padding:9px 20px;}
+.hidden{ display: none; }
+.tab-menu{padding-left:1px;}
+
+/**
+ * ========================================
+ *
+ * 
+/* content
+ * ----------------------------------------
+ *
+ *
+ *
+ *
+ */
+h1{margin-bottom:10px;} 
+.wrapper{float:left; position:relative; z-index:0;}
+
+
+
+.col1, .col2Front, .col2, .col3{float:left;}
+
+/*///////////////////
+left side column
+////////////////*/
+.col1{width:156px;}
+.col1 h2{margin-bottom:5px;}
+.col1 ul{width:136px; padding-top:25px;}
+.col1 ul li{width:100%; display:inline-block; padding:8px 0; background:url(/zh_cn/images/left_nav_underline.gif) no-repeat 0 0}
+.col1 .category-menu {background:none; padding-left: 8px; width: 128px !important; padding-top:0;}
+.col1 .category-menu li {background:none; width: 100%; display: inline-block; padding: 4px 0;}
+
+.col1 .section-menu-item .selected, .col1 .section-menu-item .selected:hover { color: #00317D; font-weight: bold;} 
+html .col1 ul ul a.selected, .col1 ul li a.selected:hover { color: #00317D; font-weight: bold;} 
+
+.col1 .section-menu-item a:hover { color: #00317D; font-weight: normal;} 
+.category-menu-item a{background:url(/zh_cn/images/arrow_submenu.gif) no-repeat 0 5px; padding-left:10px; display:inline-block;}
+.category-menu{padding-left:2px; padding-top:3px;}
+
+/*///////////////////
+contnt page - middle column
+////////////////*/
+.col2{width:575px;}
+.col2 .topBanner{width:575px;/* height:129px;*/ position:relative; margin-bottom:15px; clear:both;}
+.col2 .topBanner .bannerImg{/*position:absolute; left:0; top:0;*/}
+.col2 .topBanner dl{position:absolute; left:23px; top:25px; width:92%;}
+.col2 .bannerTxtRight dl{right:23px; left:auto;}
+.col2 .bannerTxtCenter dl{left:111px;}
+
+/*///////////////////
+yellow button
+////////////////*/
+.col2 .topBanner .btnYellow{background:url(/zh_cn/images/banner_btn_yellow2.gif) no-repeat 100% 0; height:31px; display:inline-block; margin-top:5px; cursor:hand; cursor:pointer;}
+.col2 .topBanner .btnYellow span{display:inline-block; background:url(/zh_cn/images/banner_btn_yellow2.gif) no-repeat 0 0; margin-right:12px; padding-left:15px; height:26px; padding-top:5px;}
+.col2 .topBanner .btnYellow:hover{background:url(/zh_cn/images/banner_btn_yellow2.gif) no-repeat 100% -31px;}
+.col2 .topBanner .btnYellow:hover span{background:url(/zh_cn/images/banner_btn_yellow2.gif) no-repeat 0 -31px;}
+
+/*///////////////////
+apply now button
+////////////////*/
+.btnApply{width:179px; height:66px; display:inline-block; background:url(/zh_cn/images/btn_apply.jpg) no-repeat 100% 0;}
+.btnApply span{display:inline-block; padding-left:58px; padding-top:10px;}
+.btnApply *{cursor:pointer; cursor:hand;}
+
+/*///////////////////
+tab box
+////////////////*/
+#tabsBox{float:left; width:100%;}
+#tabsBox .tabs{clear:both; background:url(/zh_cn/images/tabs_content_top.gif) no-repeat 0 29px; width:100%; float:left; margin-top:14px;}
+#tabsBox .tabs li{float:left; margin-right:4px; margin-bottom:16px;}
+#tabsBox .tabs a{background:url(/zh_cn/images/tabs.gif) no-repeat 100% 0; height:25px; display:inline-block; margin-top:5px; cursor:hand; cursor:pointer;}
+#tabsBox .tabs a span{display:inline-block; background:url(/zh_cn/images/tabs.gif) no-repeat 0 0; margin-right:28px; padding-left:28px; height:20px; padding-top:5px;}
+#tabsBox .tabs a:hover, #tabsBox .tabs .current{background:url(/zh_cn/images/tabs.gif) no-repeat 100% -25px; text-decoration:none;}
+#tabsBox .tabs a:hover span, #tabsBox .tabs .current span{background:url(/zh_cn/images/tabs.gif) no-repeat 0 -25px; text-decoration:none;}
+
+.quickLink .box{ background:none;}
+.eventList .box{ background:none; width:216px;}
+.itemList .box{ background:none;}
+.box{width:100%; float:left; _float:none; background:url(/zh_cn/images/tabs_content_bg.gif) no-repeat left bottom; display:inline-block;}
+.box700px{width:100%; float:left; _float:none; background:url(/en/images/tabs_content_bg700px.gif) no-repeat left bottom; display:inline-block;}
+.box700px .bg{ padding:0 10px 10px 10px; *padding:15px 10px 10px 10px;}
+.col2 .box .bg{ padding:0 10px 10px 10px; *padding:15px 10px 10px 10px;}
+#tabsBox .list{margin-top:0;}
+#tabsBox .list td{padding-bottom:5px; padding-right:3px;}
+#tabsBox .form td{padding:5px;}
+#tabsBox .form .content td{padding:0px; text-align:left;}
+#tabsBox .button td{padding-top:5px; padding-left:5px;}
+
+#tabsMenu{float:left; width:100%;}
+#tabsMenu .tabs{clear:both; background:url(/zh_cn/images/tabsmenu_bottom.gif) no-repeat 0 29px; width:100%; float:left; margin-top:14px;}
+#tabsMenu .tabs li{float:left; margin-right:4px; margin-bottom:16px;}
+#tabsMenu .tabs a{background:url(/zh_cn/images/tabsmenu.gif) no-repeat 100% 0; height:25px; display:inline-block; margin-top:5px; cursor:hand; cursor:pointer;}
+#tabsMenu .tabs a span{display:inline-block; background:url(/zh_cn/images/tabsmenu.gif) no-repeat 0 0; margin-right:28px; padding-left:28px; height:20px; padding-top:5px;}
+#tabsMenu .tabs a:hover, #tabsMenu  .tabs .current{background:url(/zh_cn/images/tabsmenu.gif) no-repeat 100% -25px; text-decoration:none;}
+#tabsMenu .tabs a:hover span, #tabsMenu  .tabs .current span{background:url(/zh_cn/images/tabsmenu.gif) no-repeat 0 -25px; text-decoration:none;}
+#tabsMenu .list{margin-top:0;}
+#tabsMenu .list td{padding-bottom:5px; padding-right:3px;}
+
+.callForAct{background:url(/zh_cn/images/bg_call_for_act.gif) no-repeat 0 0; width:553px; height:83px; position:relative; margin-bottom:3px; }
+.callForAct td{width:120px; text-align:center; position:relative;}
+.callForAct td img{ margin:0 auto;}
+.callForAct a, .callForAct a:visited{color:#666; text-decoration:none;}
+.callForAct td a:hover{color:#025087;text-decoration:underline;}
+.callForAct table{ position:absolute; top:8px;}
+
+/*///////////////////
+content page - item list
+////////////////*/
+.itemList{width:100%; margin:15px 0;z-index: 200;}
+.itemList li{width:270px; height:100px; margin-right:5px; margin-bottom:6px; float:left; position:relative; padding-left:12px; padding-top:9px;}
+.itemList .bgImg, .itemList .box{position:absolute; left:0; top:0;}
+.itemList .box{z-index:10; left:12px; top:5px;}
+.itemList .box{_font-size: 11px;}
+.itemList .box a {_font-size: 11px;}
+.hidden-itemList    { position: static !important; }
+/*///////////////////
+settings for front page
+////////////////*/
+.col2Front{width:731px; _width:729px;}
+.promoBanner{width:100%; height:295px; position:relative; background:url(/zh_cn/images/personal/personal_banking/front_top_banner_frame.gif) no-repeat 0 0    ;}
+.promoBanner .thumbBg{width:723px; height:64px; position:absolute; bottom:3px; left:4px; background-color:white; opacity:0.8; filter:alpha(opacity=80);}
+.promoBanner ul{}
+.promoBanner table{ *height:53px;}
+.promoBanner .thumb{margin-right:3px;}
+.promoBanner .thumb img{border:1px solid #ccc;}
+.promoBanner .selected {font-weight: bold; color: #036AB9; background-color: #CBEBFA;}
+.promoBanner .visualBox{width:723px; height:287px; margin:0 auto; padding-top:4px; position:relative;}
+.promoBanner .visualBox .btnSignUp{position:absolute; right:31px; top:156px;}
+
+.eventList{width:100%; margin-top:20px;}
+.eventList li{width:227px; height:111px; float:left; background:url(/zh_cn/images/2lv_banner_bg.jpg) no-repeat 0 0  ; padding-left:12px; padding-top:9px; margin-right:7px; _margin-right:6px;}
+.eventList .promoImg{border:1px solid #deecf5;}
+
+.quickLink{width:100%; margin-top:30px; float:left; padding-left:5px;}
+.quickLink .tit{padding-bottom:5px;}
+.quickLink .box{width:156px; float:left; display:inline; margin-right:25px;}
+.quickLink .long{width:186px;}
+.quickLink ul{width:100%; margin-bottom:5px; float:left;}
+.quickLink ul li{width:100%; display:inline-block; float:left; border-bottom:1px solid #c4c9dc; padding:4px 0;}
+
+
+/*///////////////////
+settings for right side column
+////////////////*/
+.col3{width:216px; margin-left:13px; _margin-left:9px;}
+
+
+.loginContainer .contentBg{background:url(/zh_cn/images/login_bg_content.gif) repeat-y 0 0;}
+.loginContainer .box{width:181px; margin:0 auto; float:none; background:none; display:block}
+.underline{width:210px; height:1px; background-color:#c0d7e8; margin-left:4px;}
+
+.loginContainer .logOn, .loginContainer .help{width:181px; display: block; margin-top:10px;}
+.loginContainer .logOn td{text-align:center; padding-bottom:8px;}
+.loginContainer .logOn td td{text-align:left; padding-bottom:0;}
+.loginContainer .help td{text-align:center; padding-bottom:8px;}
+.loginContainer .help td td{text-align:left; padding-bottom:0;}
+
+.rightSideBanner{width:199px; padding-left:10px; margin-top:20px;}
+.rightSideBanner li{width:100%; height:64px; background:no-repeat 0 0; position:relative; margin-bottom:20px;}
+.rightSideBanner .btn{background:url(/zh_cn/images/btn_arrow_blue.jpg) no-repeat left center; display:inline-block; padding-left:20px; margin-top:2px;}
+
+.rightSideBanner p{line-height:1.2em; color:#003576;}
+.rightSideBanner table{position:absolute; right:0; bottom:0; width:120px;}
+.rightSideBanner table th{border-bottom:1px solid #c3d8eb;}
+
+.helpItem{max-width:210px; float:left; z-index:1;}
+.helpItem table{position:relative;}
+.helpItem li{width:178px; height:23px; background:green; background:0 0 no-repeat; position:relative; margin-bottom:7px; float:left; z-index: 2;}
+.helpItem input, .helpItem img { z-index:1;}
+.helpItem  .name {width:110px; height:16px; border:0; background:transparent; margin-right:7px; color:#003576;}
+.helpItem .itemList{
+    position:absolute;
+    top:23px;
+    left:2px;
+    width:176px;
+    background-color:white;
+    border:1px solid #fafafa;
+    border-top:0; 
+    margin:-1px; 
+    display:none;
+    z-index:200;
+	text-align:left;
+}
+.helpItem .floatRight { z-index: 1; }
+.helpItem .pull-button a { width: 9px; height: 14px; display: inline-block; background: url(../images/arrow_down_blue.gif) no-repeat center center;}
+.helpItem .itemList a{display:inline-block; width:166px; padding:2px 5px; z-index: 300;}
+
+.pointTable td{padding:1px 2px;}
+/* here comes the fix applied in IE6 */
+.helpItem  .name  { _font-family: Arial, Helvetica, sans-serif; _font-size: 12px;}
+/* ######### content page  ######### */
+
+
+/**
+ * ========================================
+ *
+ * 
+/* footer
+ * ----------------------------------------
+ *
+ *
+ *
+ *
+ */
+ 
+div.footer{
+ 	background:url(../images/footer_shadow.jpg) repeat-x 0 0;
+	width:100%;
+	padding-top:55px;
+	padding-bottom:10px;
+	clear:both;
+	margin-top:-15px;
+	position:relative;
+}
+
+.footerContainer{width:960px; margin:0 auto; position:relative;}
+.footerContainer .links{width:570px; position:absolute; left:2px;}
+.footerContainer .copy{width:390px; position:absolute; right:2px;}
+/* footer popup
+ * ----------------------------------------*/
+.footerContainer_popup{width:576px;  margin:0 auto; position:relative;}
+/*.footerContainer .links{width:570px; position:absolute; left:2px;}
+.footerContainer .copy{width:390px; position:absolute; right:2px;}*/
+.footerContainer .links{width:390px; position:absolute; left:2px; text-align:left;}
+.footerContainer .copy{width:500px; position:absolute; top:30px; left:2px; text-align:left;}
+.footerContainer .icon{width:500px; position:absolute; right:2px; text-align:right;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media print{
+
+.functionsBar,.topMenu,#subMenus,#section-menu,.col3,.tabs,.footer{ display:none;}
+
+iframe{  position:absolute;}
+#tabsBox,.col2 .box, .col2{ clear:both; float:none;}
+.box{ display:block !important;}
+
+*{ font-family:新細明體, mingliu, Helvetica, sans-serif !important;}
+	
+	
+}

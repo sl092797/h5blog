@@ -1,0 +1,329 @@
+/*-- responsive --*/
+@media(max-width:768px) {
+    .zu-top-link-logo {
+        float: left;
+        width: 60px;
+        height: 60px;
+        background-image: url(/h5blog/static/page/images/logo.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0px;
+        border-radius: 60px;
+        text-indent: -9999px;
+        color: #fff
+    }
+
+    .head-nav ul li a {
+        font-size: 1.4em;
+        margin: 0px 18px;
+    }
+    
+    .zg-wrap {
+        width: auto;
+        padding-left: 6px;
+        padding-right: 6px
+    }
+    
+    ul.number li a,
+    ul.number li span {
+        font-size: 1em;
+    }
+
+    
+    .header-bottom {
+        padding: 1em 0 0.6em;
+    }
+    
+    .banner-info h1 {
+        font-size: 1.7em;
+    }
+    
+    .banner-info p {
+        font-size: 1em;
+    }
+    
+    .book1 input[type="text"] {
+        font-size: 1em;
+        padding: 10px 11px;
+    }
+    
+    select {
+        font-size: 1em;
+        padding: 9px;
+    }
+    
+    .reservation {
+        padding: 16px 12px;
+    }
+    
+    .reservation ul li.span1_of_1 {
+        width: 25.33333%;
+        margin-left: 0.5em;
+    }
+    
+    .date_btn form input[type="submit"] {
+        padding: 8.5px;
+    }
+    
+    .banner {
+        min-height: 370px;
+        padding: 6em 0 0;
+    }
+    
+    .our h5 {
+        font-size: 1.3em;
+    }
+    
+    .our h2 {
+        font-size: 1.7em;
+    }
+    
+    .our-top h3 {
+        font-size: 1.2em;
+    }
+    
+    .our-left {
+        padding: 2em 0em 2em;
+    }
+    
+    .recnt h6 {
+        font-size: 1.3em;
+    }
+    
+    .recnt h3 {
+        font-size: 1.7em;
+    }
+    
+    .rec-left {
+        margin: 0 0 2em;
+    }
+    
+    .recent-right {
+        width: 38%;
+        margin: 0 auto;
+    }
+    
+    .what h6 {
+        font-size: 1.3em;
+    }
+    
+    .what h3 {
+        font-size: 1.7em;
+    }
+    
+    .what-bottom {
+        position: absolute;
+        top: 8em;
+        right: -1em;
+    }
+    
+    .foo-left {
+        float: left;
+        width: 33.33%;
+    }
+    
+    .logo {
+        float: left;
+        width: 21%;
+    }
+    
+    .main-img {
+        float: left;
+        width: 40%;
+    }
+    
+    .main-text {
+        float: right;
+        width: 60%;
+    }
+    
+    .about-main h3 {
+        font-size: 1.7em;
+        padding: 0;
+    }
+    
+    .main-about h4 {
+        font-size: 0.9em;
+    }
+    
+    .main-text p.para,
+    p.para1 {
+        font-size: 0.9em;
+    }
+    
+    .mission h3 {
+        font-size: 1.7em;
+        padding: 0;
+    }
+    
+    .visson-text {
+        float: right;
+        width: 88%;
+    }
+    
+    .vission-lef {
+        float: left;
+        width: 12%;
+    }
+    
+    .mission-grids {
+        margin-top: 1em;
+    }
+    
+    .about-main {
+        padding: 2em 0 1em;
+    }
+    
+    .portfolio-top h3 {
+        font-size: 1.7em;
+    }
+    
+    .small-text p {
+        font-size: 11px;
+    }
+    
+    .post-date span {
+        font-size: 1.1em;
+    }
+    
+    .post-date label {
+        font-size: 11px;
+    }
+    
+    .blog-artical-basicinfo li {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .blog-artical-info-head h2 a {
+        font-size: 0.6em;
+    }
+    
+    .twitter-weights h3 {
+        font-size: 1em;
+    }
+    
+    .twitter-weight-grid h4 {
+        font-size: 1.1em;
+    }
+    
+    .twitter-weight-grid p {
+        font-size: 0.9em;
+    }
+    
+    .blog-artical-info-text p {
+        font-size: 0.9em;
+    }
+    
+    .blog-artical-info-head ul li a,
+    .blog-artical-info-head ul li {
+        font-size: 0.9em;
+    }
+    
+    .b-tag-weight ul li a {
+        padding: 0.5em 1em;
+        font-size: 0.75em;
+    }
+    
+    .single-top p {
+        font-size: 0.9em;
+    }
+    
+    .sucss-bottom li {
+        display: inline-block;
+        margin: 0.8em 1em 0 0;
+    }
+    
+    .single-top h2 {
+        font-size: 1.3em;
+    }
+    
+    .respon h5 {
+        font-size: 1.2em;
+        text-align: center;
+    }
+    
+    .single-top p {
+        font-size: 0.9em;
+    }
+    
+    .strator-left {
+        float: left;
+        width: 19%;
+    }
+    
+    .strator-right {
+        float: right;
+        width: 80%;
+    }
+    
+    .comment input[type="text"] {
+        margin-right: 0.7em;
+    }
+    
+    a.reply {
+        font-size: 0.875em;
+        padding: 0.5em 1em;
+    }
+    
+    .strator1 {
+        padding: 2em 1em;
+    }
+    
+    .main-head-section h3 {
+        font-size: 1.7em;
+    }
+    
+    .callbacks_tabs {
+        right: 0%;
+    }
+    
+    .callbacks_tabs a:after {
+        height: 14px;
+        width: 14px;
+    }
+    
+    .r-tabs .r-tabs-accordion-title .r-tabs-anchor {
+        display: inline-block;
+        padding: 10px;
+        background-color: none;
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+        margin-bottom: 3px;
+        float: left;
+    }
+    
+    .main {
+        padding: 10em 0px;
+    }
+    
+    .error-404 h1 {
+        font-size: 7em;
+    }
+    
+    .error-404 p {
+        font-size: 1.1em;
+    }
+    
+    .login-page {
+        padding: 3em 0;
+    }
+    
+    .login-right.wow.fadeInRight {
+        padding: 0;
+        margin-top: 2em;
+    }
+    
+    .team-top li {
+        float: left;
+        width: 28.3%;
+        margin: 1.1em;
+    }
+    
+    .callbacks_tabs {
+        top: 150%;
+        left: 45%;
+    }
+}
+
