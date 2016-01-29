@@ -67,17 +67,32 @@
                 <!-- banner -->
                 <!-- main_blog start-->
                 <div class="row">
-                <div class="col-md-8 col-xs-12" style="height:1800px;">
-                    <div class="feed_wrap" style="height:300px;"></div>
-                    <div class="feed_wrap" style="height:300px;"></div>
-                    <div class="feed_wrap" style="height:400px;"></div>
+                <div class="col-md-8 col-xs-12" style="height:100%;">
+                    <div class="feed_wrap">
+                        <img src="${BASE_PATH}/static/page/images/Snap1.png" width="100%">
+                    </div>
+                    <div class="feed_wrap">
+                        <img src="${BASE_PATH}/static/page/images/Snap2.png" width="100%">
+                    </div>
+                    <div class="feed_wrap">
+                        <img src="${BASE_PATH}/static/page/images/Snap3.png" width="100%">
+                    </div>
+                    <div class="feed_wrap">
+                        <img src="${BASE_PATH}/static/page/images/Snap4.png" width="100%">
+                    </div>
+                    <div class="feed_wrap">
+                        <img src="${BASE_PATH}/static/page/images/Snap5.png" width="100%">
+                    </div>
+                    <div class="feed_wrap">
+                        <img src="${BASE_PATH}/static/page/images/Snap6.png" width="100%">
+                    </div>
                     <div class="clearfix"> </div>
                 </div>
                 <!-- main_blog stop -->
                 <!-- right start-->
                 <!-- right stop -->
                 <!-- footer-top -->
-                <div class="col-md-4 footer-top row">
+                <div class="col-md-4 col-xs-12 footer-top row">
                     <div class="col-md-4 foo-left">
                         <a href="${BASE_PATH}/static/page/index.html"><img src="${BASE_PATH}/static/page/images/logo.png" class="img-responsive" alt=""></a>
                         <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore. sed diam nonumy eirmod tempor invidunt ut labore. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
@@ -102,12 +117,11 @@
                             <div class="clearfix"> </div>
                         </ul>
                     </div>
-                    <div class="clearfix"> </div>
                 </div>
                 </div>
                 <!-- footer-top -->
                 <!-- footer-bottom -->
-                <div class="col-md-12 footer-bottom">
+                <div class="col-md-12 row footer-bottom  col-xs-12">
                     <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">example</a></p>
                 </div>
                 <!-- footer-bottom -->

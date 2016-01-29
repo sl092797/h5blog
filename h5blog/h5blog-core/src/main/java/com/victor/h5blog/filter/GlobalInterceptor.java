@@ -44,7 +44,8 @@ public class GlobalInterceptor implements HandlerInterceptor {
 		}
 		Object user = request.getSession().getAttribute(SystemConstant.FORCE_USER);
 		// system config param
-		String basePath = HttpUtils.getBasePath(request);
+//		String basePath = HttpUtils.getBasePath(request);
+		String basePath ="http://onlineuat.cupdata.com:50001/h5blog/";
 		modelAndView.addObject("BASE_PATH", basePath);
 		modelAndView.addObject("CCB_BASE_PATH", basePath
 				+ "/static/template/ccb");
