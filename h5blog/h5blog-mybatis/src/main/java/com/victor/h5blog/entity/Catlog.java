@@ -1,18 +1,25 @@
 package com.victor.h5blog.entity;
 
 import java.util.Date;
-import java.util.List;
 
 public class Catlog {
-    private Long id;
+    private Long catlogId;
 
-    private Long fatherId;
+    private Long catlogFatherId;
 
-    private Long type;
+    private String catlogKey;
 
-    private String name;
+    private String catlogName;
 
-    private Long level;
+    private String catlogDesc;
+
+    private Long catlogCoverid;
+
+    private Byte catlogPrivacy;
+
+    private Byte catlogLevel;
+
+    private String catlogTag;
 
     private String createUser;
 
@@ -21,47 +28,77 @@ public class Catlog {
     private String changeUser;
 
     private Date changeDate;
-    
-    private List<Catlog> child;
 
-    public Long getId() {
-        return id;
+    public Long getCatlogId() {
+        return catlogId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCatlogId(Long catlogId) {
+        this.catlogId = catlogId;
     }
 
-    public Long getFatherId() {
-        return fatherId;
+    public Long getCatlogFatherId() {
+        return catlogFatherId;
     }
 
-    public void setFatherId(Long fatherId) {
-        this.fatherId = fatherId;
+    public void setCatlogFatherId(Long catlogFatherId) {
+        this.catlogFatherId = catlogFatherId;
     }
 
-    public Long getType() {
-        return type;
+    public String getCatlogKey() {
+        return catlogKey;
     }
 
-    public void setType(Long type) {
-        this.type = type;
+    public void setCatlogKey(String catlogKey) {
+        this.catlogKey = catlogKey == null ? null : catlogKey.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getCatlogName() {
+        return catlogName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setCatlogName(String catlogName) {
+        this.catlogName = catlogName == null ? null : catlogName.trim();
     }
 
-    public Long getLevel() {
-        return level;
+    public String getCatlogDesc() {
+        return catlogDesc;
     }
 
-    public void setLevel(Long level) {
-        this.level = level;
+    public void setCatlogDesc(String catlogDesc) {
+        this.catlogDesc = catlogDesc == null ? null : catlogDesc.trim();
+    }
+
+    public Long getCatlogCoverid() {
+        return catlogCoverid;
+    }
+
+    public void setCatlogCoverid(Long catlogCoverid) {
+        this.catlogCoverid = catlogCoverid;
+    }
+
+    public Byte getCatlogPrivacy() {
+        return catlogPrivacy;
+    }
+
+    public void setCatlogPrivacy(Byte catlogPrivacy) {
+        this.catlogPrivacy = catlogPrivacy;
+    }
+
+    public Byte getCatlogLevel() {
+        return catlogLevel;
+    }
+
+    public void setCatlogLevel(Byte catlogLevel) {
+        this.catlogLevel = catlogLevel;
+    }
+
+    public String getCatlogTag() {
+        return catlogTag;
+    }
+
+    public void setCatlogTag(String catlogTag) {
+        this.catlogTag = catlogTag == null ? null : catlogTag.trim();
     }
 
     public String getCreateUser() {
@@ -95,12 +132,4 @@ public class Catlog {
     public void setChangeDate(Date changeDate) {
         this.changeDate = changeDate;
     }
-
-	public List<Catlog> getChild() {
-		return child;
-	}
-
-	public void setChild(List<Catlog> child) {
-		this.child = child;
-	}
 }

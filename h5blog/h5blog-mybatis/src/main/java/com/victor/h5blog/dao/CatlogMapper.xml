@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.victor.h5blog.dao.CatlogMapper">
+  <resultMap id="BaseResultMap" type="com.victor.h5blog.entity.Catlog">
+    <id column="catlog_id" jdbcType="BIGINT" property="catlogId" />
+    <result column="catlog_father_id" jdbcType="BIGINT" property="catlogFatherId" />
+    <result column="catlog_key" jdbcType="VARCHAR" property="catlogKey" />
+    <result column="catlog_name" jdbcType="VARCHAR" property="catlogName" />
+    <result column="catlog_desc" jdbcType="VARCHAR" property="catlogDesc" />
+    <result column="catlog_coverId" jdbcType="BIGINT" property="catlogCoverid" />
+    <result column="catlog_privacy" jdbcType="TINYINT" property="catlogPrivacy" />
+    <result column="catlog_level" jdbcType="TINYINT" property="catlogLevel" />
+    <result column="catlog_tag" jdbcType="VARCHAR" property="catlogTag" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="change_user" jdbcType="VARCHAR" property="changeUser" />
+    <result column="change_date" jdbcType="TIMESTAMP" property="changeDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    catlog_id, catlog_father_id, catlog_key, catlog_name, catlog_desc, catlog_coverId, 
+    catlog_privacy, catlog_level, catlog_tag, create_user, create_date, change_user, 
+    change_date
+  </sql>
+  <select id="selectByExample" parameterType="com.victor.h5blog.entity.CatlogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from h5blog_catlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from h5blog_catlog
+    where catlog_id = #{catlogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from h5blog_catlog
+    where catlog_id = #{catlogId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.victor.h5blog.entity.CatlogExample">
+    delete from h5blog_catlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.victor.h5blog.entity.Catlog" useGeneratedKeys="true" keyProperty="catlogId">
+    insert into h5blog_catlog (catlog_id, catlog_father_id, catlog_key, 
+      catlog_name, catlog_desc, catlog_coverId, 
+      catlog_privacy, catlog_level, catlog_tag, 
+      create_user, create_date, change_user, 
+      change_date)
+    values (#{catlogId,jdbcType=BIGINT}, #{catlogFatherId,jdbcType=BIGINT}, #{catlogKey,jdbcType=VARCHAR}, 
+      #{catlogName,jdbcType=VARCHAR}, #{catlogDesc,jdbcType=VARCHAR}, #{catlogCoverid,jdbcType=BIGINT}, 
+      #{catlogPrivacy,jdbcType=TINYINT}, #{catlogLevel,jdbcType=TINYINT}, #{catlogTag,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{changeUser,jdbcType=VARCHAR}, 
+      #{changeDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.h5blog.entity.Catlog">
+    insert into h5blog_catlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="catlogId != null">
+        catlog_id,
+      </if>
+      <if test="catlogFatherId != null">
+        catlog_father_id,
+      </if>
+      <if test="catlogKey != null">
+        catlog_key,
+      </if>
+      <if test="catlogName != null">
+        catlog_name,
+      </if>
+      <if test="catlogDesc != null">
+        catlog_desc,
+      </if>
+      <if test="catlogCoverid != null">
+        catlog_coverId,
+      </if>
+      <if test="catlogPrivacy != null">
+        catlog_privacy,
+      </if>
+      <if test="catlogLevel != null">
+        catlog_level,
+      </if>
+      <if test="catlogTag != null">
+        catlog_tag,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="changeUser != null">
+        change_user,
+      </if>
+      <if test="changeDate != null">
+        change_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="catlogId != null">
+        #{catlogId,jdbcType=BIGINT},
+      </if>
+      <if test="catlogFatherId != null">
+        #{catlogFatherId,jdbcType=BIGINT},
+      </if>
+      <if test="catlogKey != null">
+        #{catlogKey,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogName != null">
+        #{catlogName,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogDesc != null">
+        #{catlogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogCoverid != null">
+        #{catlogCoverid,jdbcType=BIGINT},
+      </if>
+      <if test="catlogPrivacy != null">
+        #{catlogPrivacy,jdbcType=TINYINT},
+      </if>
+      <if test="catlogLevel != null">
+        #{catlogLevel,jdbcType=TINYINT},
+      </if>
+      <if test="catlogTag != null">
+        #{catlogTag,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null">
+        #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null">
+        #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.victor.h5blog.entity.CatlogExample" resultType="java.lang.Integer">
+    select count(*) from h5blog_catlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update h5blog_catlog
+    <set>
+      <if test="record.catlogId != null">
+        catlog_id = #{record.catlogId,jdbcType=BIGINT},
+      </if>
+      <if test="record.catlogFatherId != null">
+        catlog_father_id = #{record.catlogFatherId,jdbcType=BIGINT},
+      </if>
+      <if test="record.catlogKey != null">
+        catlog_key = #{record.catlogKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catlogName != null">
+        catlog_name = #{record.catlogName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catlogDesc != null">
+        catlog_desc = #{record.catlogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catlogCoverid != null">
+        catlog_coverId = #{record.catlogCoverid,jdbcType=BIGINT},
+      </if>
+      <if test="record.catlogPrivacy != null">
+        catlog_privacy = #{record.catlogPrivacy,jdbcType=TINYINT},
+      </if>
+      <if test="record.catlogLevel != null">
+        catlog_level = #{record.catlogLevel,jdbcType=TINYINT},
+      </if>
+      <if test="record.catlogTag != null">
+        catlog_tag = #{record.catlogTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.changeUser != null">
+        change_user = #{record.changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeDate != null">
+        change_date = #{record.changeDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update h5blog_catlog
+    set catlog_id = #{record.catlogId,jdbcType=BIGINT},
+      catlog_father_id = #{record.catlogFatherId,jdbcType=BIGINT},
+      catlog_key = #{record.catlogKey,jdbcType=VARCHAR},
+      catlog_name = #{record.catlogName,jdbcType=VARCHAR},
+      catlog_desc = #{record.catlogDesc,jdbcType=VARCHAR},
+      catlog_coverId = #{record.catlogCoverid,jdbcType=BIGINT},
+      catlog_privacy = #{record.catlogPrivacy,jdbcType=TINYINT},
+      catlog_level = #{record.catlogLevel,jdbcType=TINYINT},
+      catlog_tag = #{record.catlogTag,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      change_user = #{record.changeUser,jdbcType=VARCHAR},
+      change_date = #{record.changeDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.h5blog.entity.Catlog">
+    update h5blog_catlog
+    <set>
+      <if test="catlogFatherId != null">
+        catlog_father_id = #{catlogFatherId,jdbcType=BIGINT},
+      </if>
+      <if test="catlogKey != null">
+        catlog_key = #{catlogKey,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogName != null">
+        catlog_name = #{catlogName,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogDesc != null">
+        catlog_desc = #{catlogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogCoverid != null">
+        catlog_coverId = #{catlogCoverid,jdbcType=BIGINT},
+      </if>
+      <if test="catlogPrivacy != null">
+        catlog_privacy = #{catlogPrivacy,jdbcType=TINYINT},
+      </if>
+      <if test="catlogLevel != null">
+        catlog_level = #{catlogLevel,jdbcType=TINYINT},
+      </if>
+      <if test="catlogTag != null">
+        catlog_tag = #{catlogTag,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null">
+        change_user = #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null">
+        change_date = #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where catlog_id = #{catlogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.h5blog.entity.Catlog">
+    update h5blog_catlog
+    set catlog_father_id = #{catlogFatherId,jdbcType=BIGINT},
+      catlog_key = #{catlogKey,jdbcType=VARCHAR},
+      catlog_name = #{catlogName,jdbcType=VARCHAR},
+      catlog_desc = #{catlogDesc,jdbcType=VARCHAR},
+      catlog_coverId = #{catlogCoverid,jdbcType=BIGINT},
+      catlog_privacy = #{catlogPrivacy,jdbcType=TINYINT},
+      catlog_level = #{catlogLevel,jdbcType=TINYINT},
+      catlog_tag = #{catlogTag,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      change_user = #{changeUser,jdbcType=VARCHAR},
+      change_date = #{changeDate,jdbcType=TIMESTAMP}
+    where catlog_id = #{catlogId,jdbcType=BIGINT}
+  </update>
+</mapper>

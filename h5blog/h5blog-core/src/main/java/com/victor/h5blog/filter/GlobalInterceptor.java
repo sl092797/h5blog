@@ -42,28 +42,9 @@ public class GlobalInterceptor implements HandlerInterceptor {
 		if(showParam != null && showParam.equals(false)){
 			return;
 		}
-		Object user = request.getSession().getAttribute(SystemConstant.FORCE_USER);
 		// system config param
-//		String basePath = HttpUtils.getBasePath(request);
-		String basePath ="http://onlineuat.cupdata.com:50001/h5blog/";
+		String basePath = HttpUtils.getBasePath(request);
 		modelAndView.addObject("BASE_PATH", basePath);
-		modelAndView.addObject("CCB_BASE_PATH", basePath
-				+ "/static/template/ccb");
-		modelAndView.addObject("UPLOAD_BASE_PATH", basePath + "/upload");
-		modelAndView.addObject("PAGE_TPL_BASE_PATH", basePath
-				+ "/static/pagetpl");
-		modelAndView
-				.addObject(
-						"TEMPLATE_BASE_PATH",
-						basePath
-								+ "/static/template/"
-								+ configService
-										.getStringByKey(ConfigConstant.SHISHUO_TEMPLATE));
-		modelAndView.addObject("shishuo_seo_title",
-				configService.getStringByKey("shishuo_seo_title"));
-		modelAndView.addObject("shishuo_seo_description",
-				configService.getStringByKey("shishuo_seo_description"));
-		MDC.put("ip", HttpUtils.getIp(request));
 	}
 
 	@Override

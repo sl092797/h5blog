@@ -22,47 +22,10 @@ public class SystemConstant {
 	public static String LEGOO_CMS_ROOT = PropertyUtils.getRoot();
 
 	/**
-	 * 页面模板文件夹
-	 */
-	public static String PAGE_TPL_FOLDER = "static/pagetpl";
-
-	/**
-	 * 页面组件文件夹
-	 */
-	public static String PAGE_COM_FOLDER = "static/comtpl";
-
-	/**
-	 * 页面区域标识符
-	 */
-	public static String PAGE_TPL_AREA = "PAGE_TPL_AREA";
-
-	/**
-	 * 上传文件夹
-	 */
-	public static String UPLOAD_FOLDER = "upload/photo";
-
-	/**
-	 * 备份文件夹
-	 */
-	public static String BACKUP_FOLDER = "/WEB-INF/backup";
-
-	/**
 	 * Session中的管理员Key
 	 */
 	public static final String SESSION_ADMIN = "SESSION_ADMIN";
-	/**
-	 * 前台登陆用户
-	 */
-	public static final String FORCE_USER = "FORCE_USER";
-	/**
-	 * user authority list in Session
-	 */
-	public static final String USER_AUTH_LIST = "userAuthList";
-
-	/**
-	 * 头像URL 180x180
-	 */
-	public static final String FACE_URL = "http://faceurl.shishuo.com/face";
+	
 
 	/**
 	 * 编码格式

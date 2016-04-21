@@ -13,7 +13,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.victor.h5blog.dao.ConfigDao;
+import com.victor.h5blog.dao.ConfigMapper;
 import com.victor.h5blog.entity.Config;
 
 /**
@@ -26,7 +26,7 @@ import com.victor.h5blog.entity.Config;
 public class ConfigService {
 
 	@Autowired
-	private ConfigDao configDao;
+	private ConfigMapper configDao;
 
 	// ///////////////////////////////
 	// ///// 增加 ////////

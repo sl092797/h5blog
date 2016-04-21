@@ -25,8 +25,6 @@
 
 	<!-- 自动扫描legoocms包 ,将带有注解的类 纳入spring容器管理 -->
 	<context:component-scan base-package="com.victor.h5blog" />
-	
-	<cache:annotation-driven key-generator="keyGeneratorService" />
 
 	<aop:aspectj-autoproxy />
 
@@ -40,7 +38,7 @@
 	<bean id="propertyConfigurer" class="com.victor.h5blog.util.PropertyUtils">
 		<property name="locations">
 			<list>
-				<value>classpath:legoocms.properties</value> <!-- 指定外部文件的编码 -->
+				<value>classpath:h5blog.properties</value> <!-- 指定外部文件的编码 -->
 			</list>
 		</property>
 	</bean>
@@ -55,47 +53,6 @@
 				<bean
 					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
 					p:name="config" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="folder" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="article" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="media" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageCom" />
-				<!--PageComService-->
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageComDef" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageComVar" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageComVal" />
-				<!--PackServiceImpl-->
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="packProperties" />
-				<!--PageDefService-->
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageDef" />
-				<!--PageTplService-->
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageTemplateArea" />
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="pageTpl" />
-				<!--UserServiceImpl-->
-				<bean
-					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
-					p:name="user" />
 			</set>
 		</property>
 	</bean>
@@ -128,13 +85,10 @@
 		<property name="basePackage" value="com.victor.h5blog.dao" />
 	</bean>
 
-	<bean id="exceptionHandler"
-		class="com.victor.h5blog.security.MyHandlerExceptionResolver" />
-
 	<!-- FreeMarker的配置 -->
 	<bean id="freeMarkerConfigurer"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		<property name="templateLoaderPaths" value="/static/" />
+		<property name="templateLoaderPaths" value="/" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="freemarkerSettings">
 			<props>
@@ -152,46 +106,5 @@
 		</property>
 	</bean>
 
-	<!-- 登陆时验证码的配置 -->
-	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
-		<property name="config">
-			<bean class="com.google.code.kaptcha.util.Config">
-				<!--通过构造函数注入属性值 -->
-				<constructor-arg type="java.util.Properties">
-					<props>
-						<!-- 验证码宽度 -->
-						<prop key="kaptcha.image.width">150</prop>
-						<!-- 验证码高度 -->
-						<prop key="kaptcha.image.height">60</prop>
-						<!-- 生成验证码内容范围 -->
-						<prop key="kaptcha.textproducer.char.string">abcde2345678gfynmnpwx</prop>
-						<!-- 验证码个数 -->
-						<prop key="kaptcha.textproducer.char.length">5</prop>
-						<!-- 是否有边框 -->
-						<prop key="kaptcha.border">no</prop>
-						<!-- 验证码字体颜色 -->
-						<prop key="kaptcha.textproducer.font.color">red</prop>
-						<!-- 验证码字体大小 -->
-						<prop key="kaptcha.textproducer.font.size">35</prop>
-						<!-- 验证码所属字体样式 -->
-						<prop key="kaptcha.textproducer.font.names">Arial, Courier</prop>
-						<prop key="kaptcha.background.clear.from">white</prop>
-						<prop key="kaptcha.background.clear.to">white</prop>
-						<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop>
-						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
-						<!-- 干扰线颜色 -->
-						<prop key="kaptcha.noise.color">red</prop>
-						<!-- 验证码文本字符间距 -->
-						<prop key="kaptcha.textproducer.char.space">4</prop>
-					</props>
-				</constructor-arg>
-			</bean>
-		</property>
-	</bean>
-	
 
-
-
-	<!-- 登录选择器配置 -->
-	<bean id="DbLogin" class="com.victor.h5blog.service.DbLoginService"></bean>
 </beans>  

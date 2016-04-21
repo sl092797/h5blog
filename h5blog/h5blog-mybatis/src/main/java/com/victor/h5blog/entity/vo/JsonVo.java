@@ -1,8 +1,4 @@
-/*
- *	Copyright © 2013 Changsha Shishuo Network Technology Co., Ltd. All rights reserved.
- *	长沙市师说网络科技有限公司 版权所有
- *	http://www.shishuo.com
- */
+
 
 package com.victor.h5blog.entity.vo;
 
@@ -10,7 +6,6 @@ import java.util.HashMap;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.victor.h5blog.exception.ValidateException;
 
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class JsonVo<T> {
@@ -65,10 +60,9 @@ public class JsonVo<T> {
 		this.t = t;
 	}
 
-	public void check() throws ValidateException {
+	public void check(){
 		if (this.getErrors().size() > 0) {
 			this.setResult(false);
-			throw new ValidateException("有错误发生");
 		} else {
 			this.setResult(true);
 		}

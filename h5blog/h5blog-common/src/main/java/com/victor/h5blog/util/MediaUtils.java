@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 
+import org.apache.commons.fileupload.FileItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,6 +37,9 @@ public class MediaUtils {
 	
 	private static Logger logger = LoggerFactory.getLogger(MediaUtils.class);
 
+	public static String UPLOAD_PHOTO_PATH = "upload/photo/";
+	public static String UPLOAD_VIDEO_PATH = "upload/video/";
+	
 	/**
 	 * 文件允许格式
 	 */
@@ -47,6 +51,7 @@ public class MediaUtils {
 	 */
 	public static String[] PHOTO_TYPE = { ".gif", ".png", ".jpg", ".jpeg",
 			".bmp" };
+	
 
 	public static boolean isFileType(String fileName, String[] typeArray) {
 		for (String type : typeArray) {
@@ -125,28 +130,27 @@ public class MediaUtils {
 	 * @param height
 	 * @throws IOException
 	 */
-	public static String saveImage(MultipartFile multipartFile, int width,
-			int height) throws IOException {
+	public static String saveImage(InputStream inStream, int width,
+			int height,String fileRoot,String fileName) throws IOException {
 		logger.info("压缩图片尺寸："+width+" x "+height);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy/MM/dd");
-		String path = "upload/" + formater.format(new Date()) + "/"
-				+ UUID.randomUUID().toString().replaceAll("-", "") + ".jpg";
-		String filePath = SystemConstant.LEGOO_CMS_ROOT + "/" + path;
-		File file = new File(SystemConstant.LEGOO_CMS_ROOT + "/" + path);
+		String path = UPLOAD_PHOTO_PATH + formater.format(new Date()) + "/"
+				+ fileName;
+		String filePath = fileRoot+ "/" + path;
+		File file = new File(filePath);
 		if (!file.getParentFile().exists()) {
 			file.getParentFile().mkdirs();
 		}
 		if (width > 0 && height > 0) {
-			BufferedImage bufferedImage = ImageIO.read(multipartFile
-					.getInputStream());
+			BufferedImage bufferedImage = ImageIO.read(inStream);
 			int imageWidth = bufferedImage.getWidth();
 			int imageHeitht = bufferedImage.getHeight();
 			BufferedImage image = null;
 			if (width / height < imageWidth / imageHeitht) {
-				image = Thumbnails.of(multipartFile.getInputStream())
+				image = Thumbnails.of(inStream)
 						.height(height).asBufferedImage();
 			} else {
-				image = Thumbnails.of(multipartFile.getInputStream())
+				image = Thumbnails.of(inStream)
 						.width(width).asBufferedImage();
 			}
 			Thumbnails.of(image).sourceRegion(Positions.CENTER, width, height)
@@ -154,15 +158,17 @@ public class MediaUtils {
 
 		} else {
 			if (width == 0 && height == 0) {
-				multipartFile.transferTo(file);
+				Thumbnails.of(inStream)
+				.keepAspectRatio(true).outputFormat("jpg")
+				.toFile(filePath);
 			} else {
 				if (width > 0) {
-					Thumbnails.of(multipartFile.getInputStream()).width(width)
+					Thumbnails.of(inStream).width(width)
 							.keepAspectRatio(true).outputFormat("jpg")
 							.toFile(filePath);
 				}
 				if (height > 0) {
-					Thumbnails.of(multipartFile.getInputStream())
+					Thumbnails.of(inStream)
 							.height(height).keepAspectRatio(true)
 							.outputFormat("jpg").toFile(filePath);
 				}

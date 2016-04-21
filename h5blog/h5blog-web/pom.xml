@@ -26,16 +26,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.victor.h5blog</groupId>
-			<artifactId>h5blog-plugin</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.victor.h5blog</groupId>
-			<artifactId>h5blog-static</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.victor.h5blog</groupId>
 			<artifactId>h5blog-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

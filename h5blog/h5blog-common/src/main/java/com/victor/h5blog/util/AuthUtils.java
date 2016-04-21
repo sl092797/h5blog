@@ -9,7 +9,7 @@ package com.victor.h5blog.util;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import com.victor.h5blog.constant.SystemConstant;
-import com.victor.h5blog.exception.AuthException;
+import com.victor.h5blog.exception.LoginException;
 
 /**
  * 授权相关的工具类
@@ -27,7 +27,7 @@ public class AuthUtils {
 	 * @param email
 	 *            邮箱
 	 * @return
-	 * @throws AuthException
+	 * @throws LoginException
 	 */
 	public static String getPassword(String password) {
 		return DigestUtils.md5Hex(password).toLowerCase();
@@ -41,11 +41,9 @@ public class AuthUtils {
 		return DigestUtils.md5Hex(str).toLowerCase();
 	}
 
-	/**
-	 * @param email
-	 * @return
-	 */
-	public static String getFaceUrl(String email) {
-		return SystemConstant.FACE_URL + "/" + AuthUtils.MD5(email) + ".jpg";
+	
+	public static void main(String[] args) {
+		System.out.println(getPassword("111"));
 	}
+	
 }

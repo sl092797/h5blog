@@ -1,68 +1,43 @@
-/*
- *	Copyright © 2013 Changsha Shishuo Network Technology Co., Ltd. All rights reserved.
- *	长沙市师说网络科技有限公司 版权所有
- *	http://www.shishuo.com
- */
-
 package com.victor.h5blog.action.manage;
+
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.victor.h5blog.constant.SystemConstant;
 import com.victor.h5blog.entity.vo.JsonVo;
 import com.victor.h5blog.entity.vo.UserVo;
 import com.victor.h5blog.exception.ValidateException;
-import com.victor.h5blog.service.AdminFolderService;
-import com.victor.h5blog.service.ArticleService;
-import com.victor.h5blog.service.ConfigService;
-import com.victor.h5blog.service.FolderService;
-import com.victor.h5blog.service.HeadlineService;
-import com.victor.h5blog.service.MediaService;
-import com.victor.h5blog.service.inter.AuthorityService;
-import com.victor.h5blog.service.inter.RoleService;
-import com.victor.h5blog.service.inter.UserService;
+import com.victor.h5blog.service.CatlogService;
+import com.victor.h5blog.util.HttpUtils;
 
-/**
- * @author 所有action的父类
- * 
- */
-@Controller
 public class ManageBaseAction {
-
+	
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-	@Autowired
-	protected ConfigService configService;
-
-	@Autowired
-	protected FolderService folderService;
-
-	@Autowired
-	protected ArticleService articleService;
-
-	@Autowired
-	protected MediaService attachmentService;
-
-	@Autowired
-	protected UserService userService;
+	
+	protected final static String PHOTO_CATLOG_KEY = "PHOTO";
+	protected final static String VIDEO_CATLOG_KEY="VIDEO";
 	
 	@Autowired
-	protected RoleService roleService;
+	protected CatlogService catlogService;
 	
-	@Autowired
-	protected AuthorityService authorityService;
-
-	@Autowired
-	protected HeadlineService headlineService;
-
-	@Autowired
-	protected AdminFolderService adminFolderService;
-
 	/**
 	 * 参数校验
 	 * 
@@ -78,7 +53,7 @@ public class ManageBaseAction {
 			json.setResult(true);
 		}
 	}
-
+	
 	/**
 	 * 从session中获得管理员的信息
 	 * 
@@ -90,4 +65,7 @@ public class ManageBaseAction {
 				SystemConstant.SESSION_ADMIN);
 		return userVo;
 	}
+	
+	
+	
 }

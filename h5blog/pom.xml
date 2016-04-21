@@ -265,9 +265,7 @@
 	<modules>
 		<module>h5blog-web</module>
 		<module>h5blog-core</module>
-		<module>h5blog-plugin</module>
 		<module>h5blog-common</module>
 		<module>h5blog-mybatis</module>
-		<module>h5blog-static</module>
 	</modules>
 </project>

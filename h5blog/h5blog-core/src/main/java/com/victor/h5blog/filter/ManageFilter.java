@@ -44,7 +44,7 @@ public class ManageFilter implements Filter {
 			String basePath = request.getScheme() + "://"
 					+ request.getServerName() + ":" + request.getServerPort()
 					+ path;
-			response.sendRedirect(basePath + "/admin/login.htm");
+			response.sendRedirect(basePath + "/login.htm");
 		} else {
 			chain.doFilter(request, response);
 		}

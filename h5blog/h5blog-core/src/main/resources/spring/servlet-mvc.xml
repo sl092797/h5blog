@@ -31,10 +31,8 @@
 	<mvc:annotation-driven />
 <!-- 	<mvc:annotation-driven ignoreDefaultModelOnRedirect="true"/> -->
 	
-	<mvc:resources mapping="/static/**" location="/static/"
-		cache-period="31556926" />
-	<mvc:resources mapping="/upload/**" location="/upload/"
-		cache-period="31556926" />
+<!-- 	<mvc:resources mapping="/static/**" location="/static/"
+		cache-period="31556926" /> -->
 
 
 	<mvc:interceptors>
@@ -42,7 +40,7 @@
 			<mvc:mapping path="/**" />
 			<bean class="com.victor.h5blog.filter.GlobalInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> 
 
 	<!-- 支持返回json(避免IE在ajax请求时，返回json出现下载 ) -->
 	<bean
@@ -88,10 +86,6 @@
 
 	<!-- 启用shrio授权注解拦截方式 -->
 	<aop:config proxy-target-class="true"></aop:config>
-	<bean
-		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-		<property name="securityManager" ref="securityManager" />
-	</bean>
 
 
 </beans>  
