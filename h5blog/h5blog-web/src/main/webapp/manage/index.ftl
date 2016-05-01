@@ -175,37 +175,7 @@
 
 		
 		<#include "/manage/foot.ftl">
-
-		<script>
-			$(function()	{
-				$('.chart').easyPieChart({
-					easing: 'easeOutBounce',
-					size: '140',
-					lineWidth: '7',
-					barColor: '#7266ba',
-					onStep: function(from, to, percent) {
-						$(this.el).find('.percent').text(Math.round(percent));
-					}
-				});
-
-				$('.sortable-list').sortable();
-
-				$('.todo-checkbox').click(function()	{
-					
-					var _activeCheckbox = $(this).find('input[type="checkbox"]');
-
-					if(_activeCheckbox.is(':checked'))	{
-						$(this).parent().addClass('selected');					
-					}
-					else	{
-						$(this).parent().removeClass('selected');
-					}
-				
-				});
-
-			});
-			
-		</script>
+		
 	
   	</body>
 </html>

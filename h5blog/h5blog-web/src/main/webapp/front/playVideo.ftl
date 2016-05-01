@@ -4,7 +4,7 @@
   <title>${Video.videoName}</title>
 
   <!-- Chang URLs to wherever Video.js files will be hosted -->
-  <link href="${BASE_PATH}/video/video-js.css" rel="stylesheet" type="text/css">
+  <link href="${BASE_PATH}/video/video-js.min.css" rel="stylesheet" type="text/css">
   <!-- video.js must be in the <head> for older IEs to work. -->
   <script src="${BASE_PATH}/video/video.js"></script>
 

@@ -14,11 +14,11 @@
                 <a href="javascript:updateGallery();" class="btn btn-primary" style="margin:1em 0em;float:right;">修改相册</a>
                 <div class="gallery-filter m-top-md">
                     <ul class="clearfix">
-                        <li class="active"><a href="#">All</a></li>
+                        <!-- <li class="active"><a href="#">All</a></li>
                         <li><a href="#">Albums</a></li>
                         <li><a href="#">Friends</a></li>
-                        <li><a href="#">Trips</a></li>
-                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Trips</a></li> -->
+                        <li><a href="#"></a></li>
                     </ul>
                 </div>
                 <div class="gallery-list m-top-md">

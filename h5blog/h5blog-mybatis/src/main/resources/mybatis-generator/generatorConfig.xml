@@ -39,7 +39,14 @@
         </javaClientGenerator>
 
         
-        <table tableName="h5blog_video" domainObjectName="Video"
+        <table tableName="h5blog_file" domainObjectName="File"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+             
+        </table>
+        
+        <table tableName="h5blog_blog" domainObjectName="Blog"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">

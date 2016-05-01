@@ -12,29 +12,16 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 
-	    <!-- Bootstrap core CSS -->
-	    <link href="${BASE_PATH}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Font Awesome -->
+	    <!-- <link href="${BASE_PATH}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="${BASE_PATH}/css/font-awesome.min.css" rel="stylesheet">
+		<link href="${BASE_PATH}/css/flexslider.css" rel="stylesheet">
+		<link rel="stylesheet" href="${BASE_PATH}/css/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
+		<link href="${BASE_PATH}/css/simplify.min.css" rel="stylesheet"> -->
 
-		<!-- ionicons -->
-		<!-- <link href="${BASE_PATH}/css/ionicons.min.css" rel="stylesheet"> -->
-		
-		<!-- Owl -->
-		<!-- <link href="${BASE_PATH}/css/owl.carousel.min.css" rel="stylesheet"> -->
-		<!-- <link href="${BASE_PATH}/css/owl.theme.default.min.css" rel="stylesheet"> -->
 
+		<link href="${BASE_PATH}/pkg/lib.css" rel="stylesheet">
 		<link href="${BASE_PATH}/css/style.css" rel="stylesheet">
 		<link href="${BASE_PATH}/css/front.css" rel="stylesheet">
-		<!-- <link href="${BASE_PATH}/css/extralayers.css" rel="stylesheet"> -->
-		<!-- slider -->
-		<link href="${BASE_PATH}/css/flexslider.css" rel="stylesheet">
-		<!-- FancyBox -->
-		<link rel="stylesheet" href="${BASE_PATH}/css/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
-
-		<!-- Simplify -->
-		<link href="${BASE_PATH}/css/simplify.min.css" rel="stylesheet">
 
 
 		<style type="text/css">
@@ -251,23 +238,19 @@
 			<a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
 		</div><!-- /wrapper -->
 
-		<!-- Jquery -->
-		<script src="${BASE_PATH}/js/jquery-1.11.1.min.js"></script>
+		<!-- <script src="${BASE_PATH}/js/jquery-1.11.1.min.js"></script>
 
-		<!-- Bootstrap -->
 		<script src="${BASE_PATH}/bootstrap/js/bootstrap.min.js"></script>
 
-		<!-- ScrollTo -->
 		<script src="${BASE_PATH}/js/jquery.scrollTo.min.js"></script>
 
-		<!-- Local Scroll -->
 		<script src="${BASE_PATH}/js/jquery.localScroll.min.js"></script>
 
-		<!-- Slider -->
 		<script src="${BASE_PATH}/js/slider.js"></script>
 
-		<!-- FancyBox -->
-		<script type="text/javascript" src="${BASE_PATH}/js/jquery.fancybox.js"></script>
+		<script type="text/javascript" src="${BASE_PATH}/js/jquery.fancybox.js"></script> -->
+
+		<script src="${BASE_PATH}/pkg/lib.js"></script>
 
 		<script type="text/javascript">
 
@@ -327,59 +310,13 @@
 
 		//myjs
 		 $(function() {
-		 	// $.post("${BASE_PATH}/front/weibo/getWeibos.json",{},function(data){
-    //     		if(data.result){
-    //     			var htmlStr="";
-    //     			for(var i in data.t){
-    //     				htmlStr += 
-	   //      			'<div class="wb_card">'+
-				// 			'<div class="wb_author clearfix">'+
-				// 				'<div class="wb_avatar">'+
-				// 					'<a href="http://weibo.com/dyulai1966?refer_flag=1001030101_">'+
-				// 						'<img src="${BASE_PATH}/images/profile/profile1.jpg" width="50" height="50" alt="沪城学士">'+
-				// 					'</a>'+
-				// 				'</div>'+
-				// 				'<div class="wb_author_info">'+
-				// 					'<a href="http://weibo.com/dyulai1966?refer_flag=1001030101_">'+
-				// 						'沪城学士'+
-				// 					'</a>'+
-				// 					'<i title="微博达人" class="W_icon icon_club" node-type="daren"></i>'+
-				// 					'<em class="W_icon icon_member6"></em>'+
-				// 					'<span> '+data.t[i].time+'</span>'+
-				// 				'</div>'+
-				// 			'</div>'+
-				// 			'<div class="wb_origin">'+
-				// 				data.t[i].title+
-				// 			'</div>'+
-				// 			'<div class="wb_quote">'+
-				// 				'<div class="wb_text">'+
-				// 					data.t[i].quote+
-				// 				'</div>'+
-				// 				'<ul class="wb_link clearfix">';
-				// 					for(var j in data.t[i].pictureList){
-				// 						htmlStr += '<li>'+data.t[i].pictureList[j]+'</li>';
-				// 					}
-				// 					htmlStr +=
-				// 				'</ul>'+
-				// 			'</div>'+
-				// 		'</div>';
-    //     			}
-    //     			$("#weiboSection .container").prepend(htmlStr);
-    //     			$(".fancyboxWB").fancybox({
-		  //               padding: 10,
-		  //               helpers: {
-		  //                   overlay: {
-		  //                       locked: false
-		  //                   }
-		  //               }
-		  //           });
-    //     		}
-    //     	});
-
+		 	
             $('.gallery-item').bind('touchstart', function(e) {
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
             });
+
+            weibo.enlargePhoto();
 
             $(".fancyboxVideo").fancybox({
                 fitToView   : false,
@@ -390,13 +327,44 @@
                 openEffect  : 'none',
                 closeEffect : 'fade',
                 afterClose:function(){
-                	setTimeout("$('a[href=\"#videoSection\"]')[0].click();",500);
+                	setTimeout("$.scrollTo('#videoSection',0);",300);
                 }
             });
 
             photo.getGallerys();
             video.getVideoList();
         });
+
+		var weibo = {
+			enlargePhoto:function(){
+				$('.wb_card .wb_quote .wb_link').each(function(i,itemUl){
+					$(itemUl).find('li a').each(function(j,itemA){
+						var href = $(itemA).find('img').attr('src').replace("/thumb180/","/large/");
+						$(itemA).attr({href:href,rel:'fancyboxWeibo'+i,class:'fancyboxWeibo',title:''});
+					})
+				})
+				 $(".fancyboxWeibo").fancybox({
+				 	padding: 10,
+	                prevEffect : 'none',
+					nextEffect : 'none',
+
+					closeBtn  : true,
+					arrows    : false,
+					nextClick : true,
+
+					helpers : {
+						thumbs : {
+							width  : 50,
+							height : 50
+						},
+						buttons	: {}
+					},
+					afterClose:function(){
+	                	setTimeout("$.scrollTo('#weiboSection',0);",300);
+	                }
+	            });
+			}
+		}
 
 		var photo = {
 			getGallerys:function(){
@@ -431,12 +399,24 @@
                         }
                         $(".gallery-list").html(htmlStr);
                         $(".fancybox").fancybox({
-                            padding: 10,
-                            helpers: {
-                                overlay: {
-                                    locked: false
-                                }
-                            }
+                        	padding: 10,
+                            prevEffect : 'none',
+							nextEffect : 'none',
+
+							closeBtn  : true,
+							arrows    : false,
+							nextClick : true,
+
+							helpers : {
+								thumbs : {
+									width  : 50,
+									height : 50
+								},
+								buttons	: {}
+							},
+							afterClose:function(){
+			                	setTimeout("$.scrollTo('#gallerySection',0);",300);
+			                }
                         });
                         $("#galleryName").html(galleryName);
                         $("#galleryDesc").html(galleryDesc);
@@ -447,7 +427,7 @@
 			returnGallery:function(){
 				photo.getGallerys();
             	$("#returnGallery").hide();
-            	$("#galleryName").html("照片墙");
+            	$("#galleryName").html("G A L L E R Y");
 			}
 
 		}

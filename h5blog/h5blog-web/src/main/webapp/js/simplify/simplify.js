@@ -1,9 +1,9 @@
 $(function	()	{
-	//scrollable sidebar
-	$('.scrollable-sidebar').slimScroll({
-		height: '100%',
-		size: '0px'
-	});
+	// //scrollable sidebar
+	// $('.scrollable-sidebar').slimScroll({
+	// 	height: '100%',
+	// 	size: '0px'
+	// });
 	
 	//Collapsible Sidebar Menu
 	$('.sidebar-menu .openable > a').click(function()	{

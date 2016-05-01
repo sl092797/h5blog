@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.victor.h5blog.dao.BlogMapper" >
+  <resultMap id="BaseResultMap" type="com.victor.h5blog.entity.Blog" >
+    <id column="blog_id" property="blogId" jdbcType="BIGINT" />
+    <result column="blog_name" property="blogName" jdbcType="VARCHAR" />
+    <result column="blog_desc" property="blogDesc" jdbcType="VARCHAR" />
+    <result column="blog_tag" property="blogTag" jdbcType="VARCHAR" />
+    <result column="blog_check" property="blogCheck" jdbcType="TINYINT" />
+    <result column="blog_status" property="blogStatus" jdbcType="TINYINT" />
+    <result column="catlog_id" property="catlogId" jdbcType="BIGINT" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="change_user" property="changeUser" jdbcType="VARCHAR" />
+    <result column="change_date" property="changeDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.victor.h5blog.entity.Blog" extends="BaseResultMap" >
+    <result column="blog_content" property="blogContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    blog_id, blog_name, blog_desc, blog_tag, blog_check, blog_status, catlog_id, create_user, 
+    create_date, change_user, change_date
+  </sql>
+  <sql id="Blob_Column_List" >
+    blog_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.victor.h5blog.entity.BlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from h5blog_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.victor.h5blog.entity.BlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from h5blog_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from h5blog_blog
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from h5blog_blog
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.victor.h5blog.entity.BlogExample" >
+    delete from h5blog_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.victor.h5blog.entity.Blog" >
+    insert into h5blog_blog (blog_id, blog_name, blog_desc, 
+      blog_tag, blog_check, blog_status, 
+      catlog_id, create_user, create_date, 
+      change_user, change_date, blog_content
+      )
+    values (#{blogId,jdbcType=BIGINT}, #{blogName,jdbcType=VARCHAR}, #{blogDesc,jdbcType=VARCHAR}, 
+      #{blogTag,jdbcType=VARCHAR}, #{blogCheck,jdbcType=TINYINT}, #{blogStatus,jdbcType=TINYINT}, 
+      #{catlogId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{changeUser,jdbcType=VARCHAR}, #{changeDate,jdbcType=TIMESTAMP}, #{blogContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.victor.h5blog.entity.Blog" >
+    insert into h5blog_blog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="blogId != null" >
+        blog_id,
+      </if>
+      <if test="blogName != null" >
+        blog_name,
+      </if>
+      <if test="blogDesc != null" >
+        blog_desc,
+      </if>
+      <if test="blogTag != null" >
+        blog_tag,
+      </if>
+      <if test="blogCheck != null" >
+        blog_check,
+      </if>
+      <if test="blogStatus != null" >
+        blog_status,
+      </if>
+      <if test="catlogId != null" >
+        catlog_id,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="changeUser != null" >
+        change_user,
+      </if>
+      <if test="changeDate != null" >
+        change_date,
+      </if>
+      <if test="blogContent != null" >
+        blog_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="blogId != null" >
+        #{blogId,jdbcType=BIGINT},
+      </if>
+      <if test="blogName != null" >
+        #{blogName,jdbcType=VARCHAR},
+      </if>
+      <if test="blogDesc != null" >
+        #{blogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="blogTag != null" >
+        #{blogTag,jdbcType=VARCHAR},
+      </if>
+      <if test="blogCheck != null" >
+        #{blogCheck,jdbcType=TINYINT},
+      </if>
+      <if test="blogStatus != null" >
+        #{blogStatus,jdbcType=TINYINT},
+      </if>
+      <if test="catlogId != null" >
+        #{catlogId,jdbcType=BIGINT},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null" >
+        #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null" >
+        #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blogContent != null" >
+        #{blogContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.victor.h5blog.entity.BlogExample" resultType="java.lang.Integer" >
+    select count(*) from h5blog_blog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update h5blog_blog
+    <set >
+      <if test="record.blogId != null" >
+        blog_id = #{record.blogId,jdbcType=BIGINT},
+      </if>
+      <if test="record.blogName != null" >
+        blog_name = #{record.blogName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogDesc != null" >
+        blog_desc = #{record.blogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogTag != null" >
+        blog_tag = #{record.blogTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blogCheck != null" >
+        blog_check = #{record.blogCheck,jdbcType=TINYINT},
+      </if>
+      <if test="record.blogStatus != null" >
+        blog_status = #{record.blogStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.catlogId != null" >
+        catlog_id = #{record.catlogId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.changeUser != null" >
+        change_user = #{record.changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.changeDate != null" >
+        change_date = #{record.changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.blogContent != null" >
+        blog_content = #{record.blogContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update h5blog_blog
+    set blog_id = #{record.blogId,jdbcType=BIGINT},
+      blog_name = #{record.blogName,jdbcType=VARCHAR},
+      blog_desc = #{record.blogDesc,jdbcType=VARCHAR},
+      blog_tag = #{record.blogTag,jdbcType=VARCHAR},
+      blog_check = #{record.blogCheck,jdbcType=TINYINT},
+      blog_status = #{record.blogStatus,jdbcType=TINYINT},
+      catlog_id = #{record.catlogId,jdbcType=BIGINT},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      change_user = #{record.changeUser,jdbcType=VARCHAR},
+      change_date = #{record.changeDate,jdbcType=TIMESTAMP},
+      blog_content = #{record.blogContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update h5blog_blog
+    set blog_id = #{record.blogId,jdbcType=BIGINT},
+      blog_name = #{record.blogName,jdbcType=VARCHAR},
+      blog_desc = #{record.blogDesc,jdbcType=VARCHAR},
+      blog_tag = #{record.blogTag,jdbcType=VARCHAR},
+      blog_check = #{record.blogCheck,jdbcType=TINYINT},
+      blog_status = #{record.blogStatus,jdbcType=TINYINT},
+      catlog_id = #{record.catlogId,jdbcType=BIGINT},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      change_user = #{record.changeUser,jdbcType=VARCHAR},
+      change_date = #{record.changeDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.victor.h5blog.entity.Blog" >
+    update h5blog_blog
+    <set >
+      <if test="blogName != null" >
+        blog_name = #{blogName,jdbcType=VARCHAR},
+      </if>
+      <if test="blogDesc != null" >
+        blog_desc = #{blogDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="blogTag != null" >
+        blog_tag = #{blogTag,jdbcType=VARCHAR},
+      </if>
+      <if test="blogCheck != null" >
+        blog_check = #{blogCheck,jdbcType=TINYINT},
+      </if>
+      <if test="blogStatus != null" >
+        blog_status = #{blogStatus,jdbcType=TINYINT},
+      </if>
+      <if test="catlogId != null" >
+        catlog_id = #{catlogId,jdbcType=BIGINT},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeUser != null" >
+        change_user = #{changeUser,jdbcType=VARCHAR},
+      </if>
+      <if test="changeDate != null" >
+        change_date = #{changeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blogContent != null" >
+        blog_content = #{blogContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.victor.h5blog.entity.Blog" >
+    update h5blog_blog
+    set blog_name = #{blogName,jdbcType=VARCHAR},
+      blog_desc = #{blogDesc,jdbcType=VARCHAR},
+      blog_tag = #{blogTag,jdbcType=VARCHAR},
+      blog_check = #{blogCheck,jdbcType=TINYINT},
+      blog_status = #{blogStatus,jdbcType=TINYINT},
+      catlog_id = #{catlogId,jdbcType=BIGINT},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      change_user = #{changeUser,jdbcType=VARCHAR},
+      change_date = #{changeDate,jdbcType=TIMESTAMP},
+      blog_content = #{blogContent,jdbcType=LONGVARCHAR}
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.victor.h5blog.entity.Blog" >
+    update h5blog_blog
+    set blog_name = #{blogName,jdbcType=VARCHAR},
+      blog_desc = #{blogDesc,jdbcType=VARCHAR},
+      blog_tag = #{blogTag,jdbcType=VARCHAR},
+      blog_check = #{blogCheck,jdbcType=TINYINT},
+      blog_status = #{blogStatus,jdbcType=TINYINT},
+      catlog_id = #{catlogId,jdbcType=BIGINT},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      change_user = #{changeUser,jdbcType=VARCHAR},
+      change_date = #{changeDate,jdbcType=TIMESTAMP}
+    where blog_id = #{blogId,jdbcType=BIGINT}
+  </update>
+</mapper>

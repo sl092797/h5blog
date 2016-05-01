@@ -1,6 +1,7 @@
 package com.victor.h5blog.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Catlog {
     private Long catlogId;
@@ -28,6 +29,8 @@ public class Catlog {
     private String changeUser;
 
     private Date changeDate;
+    
+    private List<Catlog> child;
 
     public Long getCatlogId() {
         return catlogId;
@@ -132,4 +135,12 @@ public class Catlog {
     public void setChangeDate(Date changeDate) {
         this.changeDate = changeDate;
     }
+    
+    public List<Catlog> getChild() {
+		return child;
+	}
+
+	public void setChild(List<Catlog> child) {
+		this.child = child;
+	}
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.victor.h5blog.dao.PhotoMapper;
 import com.victor.h5blog.entity.Photo;
 import com.victor.h5blog.entity.PhotoExample;
-import com.victor.h5blog.exception.UploadException;
 
 @Service
 public class PhotoService{

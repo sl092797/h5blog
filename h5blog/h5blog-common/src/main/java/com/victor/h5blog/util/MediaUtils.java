@@ -39,6 +39,7 @@ public class MediaUtils {
 
 	public static String UPLOAD_PHOTO_PATH = "upload/photo/";
 	public static String UPLOAD_VIDEO_PATH = "upload/video/";
+	public static String UPLOAD_FILE_PATH = "upload/file/";
 	
 	/**
 	 * 文件允许格式

@@ -7,39 +7,23 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 
-	    <!-- Bootstrap core CSS -->
-	    <link href="${BASE_PATH}/bootstrap/css/bootstrap.min.css?v=123" rel="stylesheet">
-		
-		<!-- Font Awesome -->
-		<link href="${BASE_PATH}/css/font-awesome.min.css" rel="stylesheet">
+	   
 
-		<!-- ionicons -->
+		<link href="${BASE_PATH}/pkg/lib.css" rel="stylesheet"/>	
+
 		<link href="${BASE_PATH}/css/ionicons.min.css" rel="stylesheet">
-		
-		<!-- Morris -->
-		<link href="${BASE_PATH}/css/morris.css" rel="stylesheet"/>	
-
 		<!-- Datepicker -->
 		<link href="${BASE_PATH}/css/datepicker.css" rel="stylesheet"/>	
 
 		<!-- Animate -->
 		<link href="${BASE_PATH}/css/animate.min.css" rel="stylesheet">
 
-		<!-- Owl Carousel -->
-		<link href="${BASE_PATH}/css/owl.carousel.min.css" rel="stylesheet">
-		<link href="${BASE_PATH}/css/owl.theme.default.min.css" rel="stylesheet">
-
-		<!-- Simplify -->
-		<link href="${BASE_PATH}/css/simplify.min.css" rel="stylesheet">
-
 		<!-- Toastr -->
 		<link href="${BASE_PATH}/css/toastr.css" rel="stylesheet">
 
 		<!-- H5uploader -->
 		<link href="${BASE_PATH}/css/jquery.h5uploader.css" rel="stylesheet">
-		
-		<!-- FancyBox -->
-		<link rel="stylesheet" href="${BASE_PATH}/css/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
+
 
 		<link href="${BASE_PATH}/video/video-js.css" rel="stylesheet" type="text/css">
 		<!-- video.js must be in the <head> for older IEs to work. -->
