@@ -17,4 +17,3 @@ fis.config.set('pack', {
         'css/front.css'
     ]
 });
-//
