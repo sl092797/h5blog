@@ -15,5 +15,6 @@ fis.config.set('pack', {
         'css/simplify.min.css',
         'css/style.css',
         'css/front.css'
+		
     ]
 });
