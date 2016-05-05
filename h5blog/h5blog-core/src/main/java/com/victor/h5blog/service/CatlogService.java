@@ -37,4 +37,10 @@ public class CatlogService {
 	public Catlog selectById(Long catlogId){
 		return catlogDao.selectByPrimaryKey(catlogId);
 	}
+	
+	public List<Catlog> findByFatherId(Long catlogId){
+		CatlogExample e = new CatlogExample();
+		e.createCriteria().andCatlogFatherIdEqualTo(catlogId);
+		return catlogDao.selectByExample(e);
+	}
 }

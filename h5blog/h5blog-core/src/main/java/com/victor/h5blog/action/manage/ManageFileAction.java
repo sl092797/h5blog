@@ -187,4 +187,35 @@ public class ManageFileAction extends ManageBaseAction {
 		return json;
 	}
 	
+	@SystemControllerLog(description = "删除文件目录")
+	@ResponseBody
+	@RequestMapping(value = "/deleteCatlog.json", method = RequestMethod.POST)
+	public JsonVo<String> deleteCatlog(HttpServletRequest request,
+			@RequestParam(value = "catlogId") Long catlogId) {
+		JsonVo<String> json = new JsonVo<String>();
+		List<com.victor.h5blog.entity.File> fileList = fileService.findByCatlogId(catlogId);
+		if (catlogId == null) {
+			json.getErrors().put("delete_id", "请选择要删除的目录");
+			json.setResult(false);
+			return json;
+		}
+		
+		List<Catlog> childrenlist = catlogService.findByFatherId(catlogId);
+		if(childrenlist.size() > 0){
+			json.getErrors().put("delete_children", "请先删除该目录下的子目录");
+			json.setResult(false);
+			return json;
+		}
+		
+		for(com.victor.h5blog.entity.File file:fileList){
+			file.setCatlogId(null);
+			fileService.updateFile(file);
+		}
+		
+		catlogService.deleteById(catlogId);
+		json.setResult(true);
+		 json.setMsg( "删除目录成功！");
+		return json;
+	}
+	
 }

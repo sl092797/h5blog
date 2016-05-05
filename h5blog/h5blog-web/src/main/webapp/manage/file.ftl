@@ -73,20 +73,21 @@
             </div>
         </div>
         </div>
-        <input type="hidden" id="catlogId" name="catlogId" />
+        <input type="hidden" id="catlogId" />
+        <input type="hidden" id="catlogName" />
         <div id="newFileCatlogBootbox" style="display: none">
             <form id="newFileCatlogForm" action="${BASE_PATH}/manage/file/newCatlog.json" method='post' class="form-horizontal">
                 <input type="hidden" id="parentId" name="parentId" />
                 <div class="row">
                     <label class="col-sm-3 control-label">分类名称</label>
                     <div class="col-sm-6">
-                        <input type='text' id='catlogName' name='catlogName' class='form-control' placeholder='分类名称' />
+                        <input type='text' name='catlogName' class='form-control' placeholder='分类名称' />
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-sm-3 control-label">分类描述</label>
                     <div class="col-sm-6">
-                        <input type="text" id="catlogDesc" name="catlogDesc" class="form-control" placeholder="分类描述" />
+                        <input type="text" name="catlogDesc" class="form-control" placeholder="分类描述" />
                     </div>
                 </div>
             </form>
@@ -126,6 +127,7 @@
                                  $("#parentId").val(node.id);
                                  $("#uid").val(node.id);
                                  $("#catlogId").val(node.id);
+                                 $("#catlogName").val(node.text);
                                  $("#uname").attr("placeholder", node.text);
                                  // refreshRightForm(node.id);
                              },
@@ -186,10 +188,10 @@
              }
 
              function deletecatlog() {
-                 bootbox.confirm("是否要删除目录？", function(result) {
+                 bootbox.confirm("是否要删除目录？"+$("#catlogName").val(), function(result) {
                      if (result) {
-                         $.post(CONTEXT + "/manage/file/deleteCatlog.json", {
-                                 'id': $("#catlogId").val()
+                         $.post( "${BASE_PATH}/manage/file/deleteCatlog.json", {
+                                 'catlogId': $("#catlogId").val()
                              },
                              function(data) {
                                  if (data.result) {

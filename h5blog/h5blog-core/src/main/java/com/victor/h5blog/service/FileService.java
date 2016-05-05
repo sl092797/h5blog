@@ -45,4 +45,8 @@ public class FileService{
 	public void addFile(File file){
 		fileDao.insert(file);
 	}
+	
+	public void updateFile(File file){
+		fileDao.updateByPrimaryKey(file);
+	}
 }
