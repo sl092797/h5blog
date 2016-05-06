@@ -14,7 +14,7 @@ fis.config.set('pack', {
         'css/jquery.fancybox-v=2.1.5.css',
         'css/simplify.min.css',
         'css/style.css',
-        'css/front.css'
-		
+        'css/front.css'	
     ]
 });
+//commit 5/6
