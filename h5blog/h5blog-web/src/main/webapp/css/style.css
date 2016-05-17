@@ -1,48 +1,61 @@
-.block-mid{
-	margin: 0 auto !important;
-}
-.margin-xs-mid {
-  margin: 5px auto !important;
-}
-.margin-sm-mid {
-  margin: 10px auto !important;
-}
-.margin-md-mid {
-  margin: 20px auto !important;
-}
-.margin-lg-mid {
-  margin: 40px auto !important;
+.block-mid {
+    margin: 0 auto !important;
 }
 
-.w1{
-	width:10% !important;
+.margin-xs-mid {
+    margin: 5px auto !important;
 }
-.w2{
-	width:20% !important;
+
+.margin-sm-mid {
+    margin: 10px auto !important;
 }
-.w3{
-	width:30% !important;
+
+.margin-md-mid {
+    margin: 20px auto !important;
 }
-.w4{
-	width:40% !important;
+
+.margin-lg-mid {
+    margin: 40px auto !important;
 }
-.w5{
-	width:50% !important;
+
+.w1 {
+    width: 10% !important;
 }
-.w6{
-	width:60% !important;
+
+.w2 {
+    width: 20% !important;
 }
-.w7{
-	width:70% !important;
+
+.w3 {
+    width: 30% !important;
 }
-.w8{
-	width:80% !important;
+
+.w4 {
+    width: 40% !important;
 }
-.w9{
-	width:90% !important;
+
+.w5 {
+    width: 50% !important;
 }
-.w10{
-	width:100% !important;
+
+.w6 {
+    width: 60% !important;
+}
+
+.w7 {
+    width: 70% !important;
+}
+
+.w8 {
+    width: 80% !important;
+}
+
+.w9 {
+    width: 90% !important;
+}
+
+.w10 {
+    width: 100% !important;
 }
 
 
@@ -52,39 +65,40 @@ KENBURNER RESPONSIVE BASIC STYLES OF HTML DOCUMENT
 
 Screen Stylesheet
 
-version:   	1.0
-date:      	07/27/11
-author:		themepunch
-email:     	support@themepunch.com
-website:   	http://www.themepunch.com
+version:    1.0
+date:       07/27/11
+author:     themepunch
+email:      support@themepunch.com
+website:    http://www.themepunch.com
 -----------------------------------------------------------------------------*/
 
-
-
-.boxedcontainer		{	max-width: 1170px; margin:auto; padding:0px 30px;}
-
-/*********************************************
-	-	SETTINGS FOR BANNER CONTAINERS	-
-**********************************************/
-
-.tp-banner-container{
-	width:100%;
-	position:relative;
-	padding:0;
-
+.boxedcontainer {
+    max-width: 1170px;
+    margin: auto;
+    padding: 0px 30px;
 }
 
-.tp-banner{
-	width:100%;
-	position:relative;
+
+/*********************************************
+    -   SETTINGS FOR BANNER CONTAINERS  -
+**********************************************/
+
+.tp-banner-container {
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+.tp-banner {
+    width: 100%;
+    position: relative;
 }
 
 .tp-banner-fullscreen-container {
-		width:100%;
-		position:relative;
-		padding:0;
+    width: 100%;
+    position: relative;
+    padding: 0;
 }
-
 
 .videos-title a {
     color: white;
@@ -96,7 +110,7 @@ website:   	http://www.themepunch.com
     list-style: none
 }
 
-.videos-img{
+.videos-img {
     margin: 0 auto;
     max-height: 350px;
 }
@@ -352,4 +366,20 @@ website:   	http://www.themepunch.com
 .videos-filter ul li.active a {
     background-color: #2baab1;
     color: #fff
+}
+
+input::-webkit-input-placeholder {
+    color: #ccc !important;
+}
+
+input:-moz-placeholder {
+    color: #ccc !important;
+}
+
+input::-moz-placeholder {
+    color: #ccc !important;
+}
+
+input:-ms-input-placeholder {
+    color: #ccc !important;
 }

@@ -165,6 +165,25 @@ public class ManageFileAction extends ManageBaseAction {
 		return catlog;
 	}
 	
+	@SystemControllerLog(description = "修改文件目录")
+	@ResponseBody
+	@RequestMapping(value = "/updateCatlog.json", method = RequestMethod.POST)
+	public JsonVo<String> updateCatlog(HttpServletRequest request,
+			@RequestParam(value = "ucatlogId") Long ucatlogId,
+			@RequestParam(value = "ucatlogName") String ucatlogName,
+			@RequestParam(value = "ucatlogDesc") String ucatlogDesc) {
+		JsonVo<String> json = new JsonVo<String>();
+		Catlog catlog = catlogService.selectById(ucatlogId);
+		catlog.setCatlogName(ucatlogName);
+		catlog.setCatlogDesc(ucatlogDesc);
+		catlog.setChangeDate(new Date());
+		catlog.setChangeUser(this.getAdmin(request).getName());
+		catlogService.updateById(catlog);
+		json.setResult(true);
+		 json.setMsg( "修改文件目录成功！");
+		return json;
+	}
+	
 	
 	@SystemControllerLog(description = "新增文件目录")
 	@ResponseBody
@@ -207,14 +226,28 @@ public class ManageFileAction extends ManageBaseAction {
 			return json;
 		}
 		
-		for(com.victor.h5blog.entity.File file:fileList){
-			file.setCatlogId(null);
-			fileService.updateFile(file);
+		if(fileList!=null){
+			for(com.victor.h5blog.entity.File file:fileList){
+				file.setCatlogId(null);
+				fileService.updateFile(file);
+			}
 		}
 		
 		catlogService.deleteById(catlogId);
 		json.setResult(true);
 		 json.setMsg( "删除目录成功！");
+		return json;
+	}
+	
+	@SystemControllerLog(description = "根据目录查询文件列表")
+	@ResponseBody
+	@RequestMapping(value = "/listFileByCatlog.json", method = RequestMethod.POST)
+	public JsonVo<List<com.victor.h5blog.entity.File>> listFileByCatlog(HttpServletRequest request,
+			@RequestParam(value = "catlogId") Long catlogId) {
+		JsonVo<List<com.victor.h5blog.entity.File>> json = new JsonVo<List<com.victor.h5blog.entity.File>>();
+		List<com.victor.h5blog.entity.File> fileList = fileService.findByCatlogId(catlogId);
+		json.setResult(true);
+		json.setT(fileList);
 		return json;
 	}
 	

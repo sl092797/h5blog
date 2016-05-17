@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.victor.h5blog.dao.FileMapper;
 import com.victor.h5blog.dao.PhotoMapper;
 import com.victor.h5blog.entity.File;
+import com.victor.h5blog.entity.FileExample;
 import com.victor.h5blog.entity.Photo;
 import com.victor.h5blog.entity.PhotoExample;
 import com.victor.h5blog.exception.UploadException;
@@ -24,7 +25,9 @@ public class FileService{
 	}
 	
 	public List<File> findByCatlogId(Long catlogId){
-		return null;
+		FileExample fe = new FileExample();
+		fe.createCriteria().andCatlogIdEqualTo(catlogId);
+		return fileDao.selectByExample(fe);
 	}
 	
 	public void deleteByCatlogId(HttpServletRequest request,Long catlogId){
