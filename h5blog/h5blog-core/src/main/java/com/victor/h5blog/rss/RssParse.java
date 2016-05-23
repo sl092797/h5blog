@@ -84,19 +84,38 @@ public class RssParse {
 	
 	public static Weibo transform(RssObject r){
 		Weibo w = new Weibo();
-		String title = r.getDescription().split("RT", 2)[0];
-		String detail =  r.getDescription().split("RT", 2)[1];
-		String time = r.getPubDate().substring(0,r.getPubDate().length()-5);
-		String[] quotelist = detail.split("<br/>",0);
-		List<String> linkList = new ArrayList<String>();
-		w.setTitle(title);
-		w.setTime(time);
-		w.setQuote(quotelist[0]);
-		for(int i = 1;i< quotelist.length-2;i++){
-			String link = quotelist[i].replaceFirst("/large/", "/thumb180/");
-			linkList.add(link);
+		if( r.getDescription().split("RT", 2).length>1){
+			//转载微博
+			String title = r.getDescription().split("RT", 2)[0];
+			String detail =  r.getDescription().split("RT", 2)[1];
+			String time = r.getPubDate().substring(0,r.getPubDate().length()-5);
+			String[] quotelist = detail.split("<br/>",0);
+			List<String> linkList = new ArrayList<String>();
+			w.setTitle(title);
+			w.setTime(time);
+			w.setQuote(quotelist[0]);
+			for(int i = 1;i< quotelist.length-2;i++){
+				String link = quotelist[i].replaceFirst("/large/", "/thumb180/");
+				linkList.add(link);
+			}
+			w.setPictureList(linkList);
+		}else{
+			//原创微博
+			String title = r.getTitle();
+			String detail = r.getDescription().split("<br/>",2)[1];
+			String time = r.getPubDate().substring(0,r.getPubDate().length()-5);
+			String[] quotelist = detail.split("<br/>",0);
+			List<String> linkList = new ArrayList<String>();
+			w.setTitle(title);
+			w.setTime(time);
+			for(int i = 0;i< quotelist.length-1;i++){
+				String link = quotelist[i].replaceFirst("/large/", "/thumb180/");
+				linkList.add(link);
+			}
+			w.setPictureList(linkList);
 		}
-		w.setPictureList(linkList);
+		
+		
 		return w;
 	}
 }

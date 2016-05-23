@@ -92,6 +92,8 @@ public class ManageFileAction extends ManageBaseAction {
 		                        com.victor.h5blog.entity.File f = new com.victor.h5blog.entity.File();
 		                        f.setFileName(item.getName());
 		                        f.setFilePath(path);
+		                        Long size = new Long(item.getSize());
+		                        f.setFileSize(size/1024);
 		                        f.setCreateUser(this.getAdmin(request).getName());
 		                        f.setCreateDate(new Date());
 		                        flist.add(f);
@@ -184,6 +186,36 @@ public class ManageFileAction extends ManageBaseAction {
 		return json;
 	}
 	
+	@SystemControllerLog(description = "修改文件")
+	@ResponseBody
+	@RequestMapping(value = "/updateFile.json", method = RequestMethod.POST)
+	public JsonVo<String> updateFile(HttpServletRequest request,
+			@RequestParam(value = "ufileId") Long ufileId,
+			@RequestParam(value = "ufileDesc") String ufileDesc) {
+		JsonVo<String> json = new JsonVo<String>();
+		com.victor.h5blog.entity.File file = fileService.selectById(ufileId);
+		file.setFileDesc(ufileDesc);
+		fileService.updateFile(file);
+		json.setResult(true);
+		 json.setMsg( "修改文件成功！");
+		return json;
+	}
+	
+	@SystemControllerLog(description = "修改文件目录")
+	@ResponseBody
+	@RequestMapping(value = "/changeFileCatlog.json", method = RequestMethod.POST)
+	public JsonVo<String> updateFileCatlog(HttpServletRequest request,
+			@RequestParam(value = "fid") Long fid,
+			@RequestParam(value = "cid") Long cid) {
+		JsonVo<String> json = new JsonVo<String>();
+		com.victor.h5blog.entity.File file = fileService.selectById(fid);
+		file.setCatlogId(cid);
+		fileService.updateFile(file);
+		json.setResult(true);
+		 json.setMsg( "修改文件目录成功！");
+		return json;
+	}
+	
 	
 	@SystemControllerLog(description = "新增文件目录")
 	@ResponseBody
@@ -203,6 +235,18 @@ public class ManageFileAction extends ManageBaseAction {
 		catlogService.insertCatlog(catlog);
 		json.setResult(true);
 		 json.setMsg( "新增目录成功！");
+		return json;
+	}
+	
+	@SystemControllerLog(description = "删除文件")
+	@ResponseBody
+	@RequestMapping(value = "/deleteFile.json", method = RequestMethod.POST)
+	public JsonVo<String> deleteFile(HttpServletRequest request,
+			@RequestParam(value = "fileId") Long fileId) {
+		JsonVo<String> json = new JsonVo<String>();
+		fileService.deleteFileById(request, fileId);
+		json.setResult(true);
+		 json.setMsg( "删除文件目录成功！");
 		return json;
 	}
 	

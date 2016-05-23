@@ -383,3 +383,30 @@ input::-moz-placeholder {
 input:-ms-input-placeholder {
     color: #ccc !important;
 }
+
+
+
+/* --file-- */
+
+
+.file-list ul li{
+    list-style-type: none;
+    text-align: left;
+    margin-top: 1.5em;
+}
+
+.file-list ul li span{
+    background-color: #2D2424;
+    padding: 8px;border-radius: 4px;
+}
+
+.file-list ul li span a{
+    color: #f5f5f5;
+}
+
+.file-list .file-desc{
+    margin-left: 20px;
+    display: inline;
+}
+
+

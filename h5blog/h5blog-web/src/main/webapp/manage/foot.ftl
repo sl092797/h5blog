@@ -7,8 +7,6 @@
 		
 
 		<script src='${BASE_PATH}/pkg/lib.js'></script>
-		<!-- Datepicker -->
-		<script src='${BASE_PATH}/js/uncompressed/datepicker.js'></script>
 
 
 		<!-- Bootbox -->
@@ -22,6 +20,8 @@
 
 		<!-- H5uploader -->
 		<script src='${BASE_PATH}/js/jquery.h5uploader.js'></script>
+
+		<script src='${BASE_PATH}/js/jquery-ui.min.js'></script>
 
 		
 		<!-- FancyBox -->

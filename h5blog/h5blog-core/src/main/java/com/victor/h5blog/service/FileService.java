@@ -26,7 +26,11 @@ public class FileService{
 	
 	public List<File> findByCatlogId(Long catlogId){
 		FileExample fe = new FileExample();
-		fe.createCriteria().andCatlogIdEqualTo(catlogId);
+		if(catlogId!=null){
+			fe.createCriteria().andCatlogIdEqualTo(catlogId);
+		}else{
+			fe.createCriteria().andCatlogIdIsNull();
+		}
 		return fileDao.selectByExample(fe);
 	}
 	

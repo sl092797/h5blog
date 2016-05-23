@@ -1,5 +1,10 @@
 <#assign menu="file">
     <#include "/manage/head.ftl">
+        <style type="text/css">
+        .drophover {
+            background-color: #CCCCCC;
+        }
+        </style>
         <div class="main-container">
             <div class="padding-md">
                 <h2 class="header-text no-margin">
@@ -105,13 +110,64 @@
                 </div>
             </form>
         </div>
+        <div class="modal fade" id="update_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">修改文件描述</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" autocomplete="off" action="">
+                            <input type="text" id="ufileId" hidden="true">
+                            <label class="col-sm-3 control-label">文件描述</label>
+                            <div class="col-sm-6">
+                                <input type='text' id="ufileDesc" class='form-control' />
+                            </div>
+                        </form>
+                        <button class="btn btn-danger" id="updateFileButton">确认</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <#include "/manage/foot.ftl">
             <link rel="stylesheet" type="text/css" href="${BASE_PATH}/css/bootstrap-treeview.css" />
             <script src="${BASE_PATH}/js/bootstrap-treeview.js"></script>
             <script>
             $(function() {
+                $("tbody").sortable({
+                    items: "> tr",
+                    appendTo: "parent",
+                    helper: "clone"
+                }).disableSelection();
                 buildTree();
+                $('#updateFileButton').bind("click", function() {
+                    $.ajax({
+                        url: "${BASE_PATH}/manage/file/updateFile.json",
+                        data: {
+                            'ufileDesc': $('#ufileDesc').val(),
+                            'ufileId': $('#ufileId').val(),
+                        },
+                        method: 'post',
+                        dataType: 'json',
+                        success: function(data) {
+                            if (data.result) {
+                                toastr.success(data.msg);
+                                refreshRightForm($("#catlogId").val());
+                            } else {
+                                toastr.error(data.errors['error']);
+                            }
+                        }
+                    });
+                    $('#update_file').modal('hide');
+                })
             });
+
+            function listUnsorted() {
+                refreshRightForm(null);
+            }
 
             function buildTree() {
                 $.ajax({
@@ -146,8 +202,8 @@
                                 $("#ucatlogDesc").attr("placeholder", node.desc);
                                 refreshRightForm(node.id);
                             },
+                            onRenderCallback: treeDroppable
                         };
-                        console.log(options);
                         $('#tree').treeview(options);
                     }
                 });
@@ -170,6 +226,39 @@
                     nodes.push(obj);
                 });
             }
+
+            function treeDroppable() {
+                $("#tree>ul>li").droppable({
+                    hoverClass: "drophover",
+                    tolerance: "pointer",
+                    drop: function(e, ui) {
+                        var catlogId = $(e.target).data('dataid');
+                        var fildId = $(ui.draggable[0]).data('dataid');
+                        changeCatlog(fildId, catlogId);
+                        $(ui.draggable[0]).remove();
+                    }
+                });
+            }
+
+            function changeCatlog(fid, cid) {
+                bootbox.confirm("是否要移动目录？", function(result) {
+                    if (result) {
+                        $.post("${BASE_PATH}/manage/file/changeFileCatlog.json", {
+                                'fid': fid,
+                                'cid': cid
+                            },
+                            function(data) {
+                                if (data.result) {} else {
+                                    for (var i in data.errors) {
+                                        bootbox.alert(data.errors[i]);
+                                    }
+                                }
+                            },
+                            "json");
+                    }
+                });
+            }
+
 
             function addcatlog() {
                 var confimrStr = $("#newFileCatlogBootbox").html();
@@ -247,7 +336,33 @@
                 });
             }
 
-            function uploadPhotos() {
+            function editFileDesc(fileId) {
+                $('#update_file').modal('show');
+                $('#ufileId').val(fileId);
+            }
+
+            function deleteFile(fileId, fileName) {
+                bootbox.confirm("是否要删除文件？" + fileName, function(result) {
+                    if (result) {
+                        $.post("${BASE_PATH}/manage/file/deleteFile.json", {
+                                'fileId': fileId
+                            },
+                            function(data) {
+                                if (data.result) {
+                                    toastr.success(data.msg);
+                                    refreshRightForm($("#catlogId").val());
+                                } else {
+                                    for (var i in data.errors) {
+                                        bootbox.alert(data.errors[i]);
+                                    }
+                                }
+                            },
+                            "json");
+                    }
+                });
+            }
+
+            function uploadFiles() {
                 bootbox.alert({
                     title: "上传文件",
                     message: "<div id='upload'></div>",
@@ -257,16 +372,16 @@
                         }
                     },
                     callback: function() {
-                        setTimeout("window.location.reload();", 1000);
+                        refreshRightForm($("#catlogId").val());
                     }
                 });
                 var up = $('#upload').html5uploader({
                     auto: true,
                     multi: true,
                     formData: {
-                        'catlogId': galleryId
+                        'catlogId': $("#catlogId").val()
                     },
-                    fileSizeLimit: 10240, //允许上传的文件大小，单位KB
+                    fileSizeLimit: 1024000, //允许上传的文件大小，单位KB
                     uploader: '${BASE_PATH}/manage/file/upload.json'
                 });
             }
@@ -281,24 +396,23 @@
                     url: "${BASE_PATH}/manage/file/listFileByCatlog.json",
                     success: function(result) {
                         var data = result.t;
-                        console.log(data);
                         var htmlstr = "";
                         for (var i in data) {
-                            htmlstr += "<tr class='gradeA odd' data-dataid='" + data[i]['id'] + "'>";
+                            htmlstr += "<tr class='gradeA odd' data-dataid='" + data[i]['fileId'] + "'>";
                             htmlstr += "<td>" + data[i]['fileName'] + "</td>";
-                            htmlstr += "<td>" + data[i]['fileDesc'] + "</td>";
-                            htmlstr += "<td>" + data[i]['fileSize'] + "</td>";
+                            htmlstr += "<td>" + (data[i]['fileDesc'] != null ? data[i]['fileDesc'] : '') + "</td>";
+                            htmlstr += "<td>" + data[i]['fileSize'] + "KB</td>";
                             htmlstr += "<td>" +
-                                "<a href='javascript:editPageComDef(" + data[i]['id'] + ")' title='编辑'>" +
+                                "<a href='javascript:editFileDesc(" + data[i]['fileId'] + ")' >" +
                                 "<button class='btn btn-primary btn-xs'>" +
-                                "<i class='icon-edit'></i>" +
-                                "</button>" +
+                                "<i class='fa fa-edit'></i>" +
+                                " 修改</button>" +
                                 "</a>";
                             htmlstr +=
-                                "<a href='${BASE_PATH}/manage/pagecom/update.htm?pageComDefId=" + data[i]['id'] + "' title='设置' style='margin-left:0.5em;'>" +
+                                "<a href='javascript:deleteFile(" + data[i]['fileId'] + ",\"" + data[i]['fileName'] + "\")' style='margin-left:0.5em;'>" +
                                 "<button class='btn btn-primary btn-xs'>" +
-                                "<i class='icon-cog'></i>" +
-                                "</button>" +
+                                "<i class='fa fa-trash-o'></i>" +
+                                " 删除</button>" +
                                 "</a></td></tr>";
                         }
                         $("#tbody").html(htmlstr);
