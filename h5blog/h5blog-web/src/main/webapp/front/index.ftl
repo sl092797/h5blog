@@ -220,32 +220,7 @@
                     <div class="col-sm-2">
                     </div>
                     <div class="col-sm-6 file-list">
-                        <ul style="margin-top: 3em;">
-                            <li>
-                                <span>
-										<i class="fa fa-download"></i>
-									<a href="http://localhost:8080/h5blog/upload/file/2016/05/23/IC卡业务初级培训_银联培训中心_1.rar">IC卡业务初级培训_银联培训中心_1.rar</a>
-									20MB
-									</span>
-                                <div class="file-desc">一行描述小字</div>
-                            </li>
-                            <li>
-                                <span>
-										<i class="fa fa-download"></i>
-									<a href="http://localhost:8080/h5blog/upload/file/2016/05/23/IC卡业务初级培训_银联培训中心_1.rar">IC卡业务初级培训_银联培训中心_1.rar</a>
-									20MB
-									</span>
-                                <div class="file-desc">一行描述小字</div>
-                            </li>
-                            <li>
-                                <span>
-										<i class="fa fa-download"></i>
-									<a href="http://localhost:8080/h5blog/upload/file/2016/05/23/IC卡业务初级培训_银联培训中心_1.rar">IC卡业务初级培训_银联培训中心_1.rar</a>
-									20MB
-									</span>
-                                <div class="file-desc">一行描述小字</div>
-                            </li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>
@@ -386,6 +361,7 @@
         photo.getGallerys();
         video.getVideoList();
         file.buildtree();
+        file.listFiles(1);
     });
 
     var weibo = {
@@ -562,7 +538,7 @@
                         searchResultColor: '#D9534F',
                         searchResultBackColor: undefined, //'#FFFFFF',
                         onNodeSelected: function(event, node) {
-
+                            file.listFiles(node.id);
                         }
                     };
                     $('#tree').treeview(options);
@@ -584,6 +560,27 @@
                     file.walkNode(child.child, obj.nodes);
                 }
                 nodes.push(obj);
+            });
+        },
+        listFiles:function(catlogId){
+            $.ajax({
+                type: "post",
+                dataType: 'json',
+                data: {
+                    'catlogId': catlogId == "" ? 0 : catlogId
+                },
+                url: "${BASE_PATH}/front/file/listFileByCatlog.json",
+                success: function(result) {
+                    var data = result.t;
+                    var htmlStr = "<ul>";
+                    for (var i in data) {
+                        var fileDesc = data[i]['fileDesc']||'';
+                        htmlStr += "<li class='row'><span class='col-sm-6'><i class='fa fa-download'></i><a href='${BASE_PATH}/" + data[i]['filePath'] + "'>   "+data[i]['fileName']+"</a>   "+data[i]['fileSize']+"MB</span><div class='file-desc col-sm-4'>"+fileDesc+"</div></li>";
+                    }
+                    htmlStr+="</ul>";
+                    $(".file-list").empty();
+                    $(".file-list").html(htmlStr);
+                }
             });
         }
     }

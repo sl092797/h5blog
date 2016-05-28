@@ -401,7 +401,7 @@
                             htmlstr += "<tr class='gradeA odd' data-dataid='" + data[i]['fileId'] + "'>";
                             htmlstr += "<td>" + data[i]['fileName'] + "</td>";
                             htmlstr += "<td>" + (data[i]['fileDesc'] != null ? data[i]['fileDesc'] : '') + "</td>";
-                            htmlstr += "<td>" + data[i]['fileSize'] + "KB</td>";
+                            htmlstr += "<td>" + data[i]['fileSize'] + "MB</td>";
                             htmlstr += "<td>" +
                                 "<a href='javascript:editFileDesc(" + data[i]['fileId'] + ")' >" +
                                 "<button class='btn btn-primary btn-xs'>" +

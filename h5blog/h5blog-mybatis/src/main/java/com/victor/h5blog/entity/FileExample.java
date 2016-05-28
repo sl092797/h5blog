@@ -455,52 +455,52 @@ public class FileExample {
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeEqualTo(Long value) {
+        public Criteria andFileSizeEqualTo(Float value) {
             addCriterion("file_size =", value, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeNotEqualTo(Long value) {
+        public Criteria andFileSizeNotEqualTo(Float value) {
             addCriterion("file_size <>", value, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeGreaterThan(Long value) {
+        public Criteria andFileSizeGreaterThan(Float value) {
             addCriterion("file_size >", value, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeGreaterThanOrEqualTo(Long value) {
+        public Criteria andFileSizeGreaterThanOrEqualTo(Float value) {
             addCriterion("file_size >=", value, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeLessThan(Long value) {
+        public Criteria andFileSizeLessThan(Float value) {
             addCriterion("file_size <", value, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeLessThanOrEqualTo(Long value) {
+        public Criteria andFileSizeLessThanOrEqualTo(Float value) {
             addCriterion("file_size <=", value, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeIn(List<Long> values) {
+        public Criteria andFileSizeIn(List<Float> values) {
             addCriterion("file_size in", values, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeNotIn(List<Long> values) {
+        public Criteria andFileSizeNotIn(List<Float> values) {
             addCriterion("file_size not in", values, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeBetween(Long value1, Long value2) {
+        public Criteria andFileSizeBetween(Float value1, Float value2) {
             addCriterion("file_size between", value1, value2, "fileSize");
             return (Criteria) this;
         }
 
-        public Criteria andFileSizeNotBetween(Long value1, Long value2) {
+        public Criteria andFileSizeNotBetween(Float value1, Float value2) {
             addCriterion("file_size not between", value1, value2, "fileSize");
             return (Criteria) this;
         }

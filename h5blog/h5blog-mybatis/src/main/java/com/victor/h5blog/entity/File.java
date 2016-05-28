@@ -13,7 +13,7 @@ public class File {
 
     private String filePath;
 
-    private Long fileSize;
+    private Float fileSize;
 
     private Long catlogId;
 
@@ -65,11 +65,11 @@ public class File {
         this.filePath = filePath == null ? null : filePath.trim();
     }
 
-    public Long getFileSize() {
+    public Float getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(Long fileSize) {
+    public void setFileSize(Float fileSize) {
         this.fileSize = fileSize;
     }
 

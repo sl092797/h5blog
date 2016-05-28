@@ -7,7 +7,7 @@
     <result column="file_desc" property="fileDesc" jdbcType="VARCHAR" />
     <result column="file_tag" property="fileTag" jdbcType="VARCHAR" />
     <result column="file_path" property="filePath" jdbcType="VARCHAR" />
-    <result column="file_size" property="fileSize" jdbcType="BIGINT" />
+    <result column="file_size" property="fileSize" jdbcType="FLOAT" />
     <result column="catlog_id" property="catlogId" jdbcType="BIGINT" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -215,7 +215,7 @@
         file_path = #{record.filePath,jdbcType=VARCHAR},
       </if>
       <if test="record.fileSize != null" >
-        file_size = #{record.fileSize,jdbcType=BIGINT},
+        file_size = #{record.fileSize,jdbcType=FLOAT},
       </if>
       <if test="record.catlogId != null" >
         catlog_id = #{record.catlogId,jdbcType=BIGINT},
@@ -244,7 +244,7 @@
       file_desc = #{record.fileDesc,jdbcType=VARCHAR},
       file_tag = #{record.fileTag,jdbcType=VARCHAR},
       file_path = #{record.filePath,jdbcType=VARCHAR},
-      file_size = #{record.fileSize,jdbcType=BIGINT},
+      file_size = #{record.fileSize,jdbcType=FLOAT},
       catlog_id = #{record.catlogId,jdbcType=BIGINT},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
@@ -270,7 +270,7 @@
         file_path = #{filePath,jdbcType=VARCHAR},
       </if>
       <if test="fileSize != null" >
-        file_size = #{fileSize,jdbcType=BIGINT},
+        file_size = #{fileSize,jdbcType=FLOAT},
       </if>
       <if test="catlogId != null" >
         catlog_id = #{catlogId,jdbcType=BIGINT},
@@ -296,7 +296,7 @@
       file_desc = #{fileDesc,jdbcType=VARCHAR},
       file_tag = #{fileTag,jdbcType=VARCHAR},
       file_path = #{filePath,jdbcType=VARCHAR},
-      file_size = #{fileSize,jdbcType=BIGINT},
+      file_size = #{fileSize,jdbcType=FLOAT},
       catlog_id = #{catlogId,jdbcType=BIGINT},
       create_user = #{createUser,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},

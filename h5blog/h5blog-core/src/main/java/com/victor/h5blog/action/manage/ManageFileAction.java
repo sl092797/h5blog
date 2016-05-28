@@ -92,8 +92,9 @@ public class ManageFileAction extends ManageBaseAction {
 		                        com.victor.h5blog.entity.File f = new com.victor.h5blog.entity.File();
 		                        f.setFileName(item.getName());
 		                        f.setFilePath(path);
-		                        Long size = new Long(item.getSize());
-		                        f.setFileSize(size/1024);
+		                        long size = item.getSize();
+		                        float sizef = (float)size/(1024*1024);
+		                        f.setFileSize(sizef);
 		                        f.setCreateUser(this.getAdmin(request).getName());
 		                        f.setCreateDate(new Date());
 		                        flist.add(f);
