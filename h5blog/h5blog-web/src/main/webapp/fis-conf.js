@@ -17,4 +17,4 @@ fis.config.set('pack', {
         'css/front.css'	
     ]
 });
-//commit 623
+//commit 624
